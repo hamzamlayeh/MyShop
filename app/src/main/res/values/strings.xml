@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Markeet</string>
+    <string name="www_myshop_tn">www.Markeet.tn</string>
+    <string name="mot_de_passe">Mot de passe</string>
+    <string name="email">Email</string>
+    <string name="valider">Valider</string>
+    <string name="s_inscrire">S\'inscrire ?</string>
+    <string name="login">Login</string>
+    <string name="login2">Login ?</string>
+    <string name="nom">Nom</string>
+    <string name="pr_nom">Prénom</string>
+    <string name="inscription">Inscription</string>
+    <string name="adress">Address</string>
+    <string name="t_l">Tél</string>
+</resources>
