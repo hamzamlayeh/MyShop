@@ -19,4 +19,5 @@
     <string name="mes_produit">Mes Produit</string>
     <string name="ajouter_produit">Ajouter Produit</string>
     <string name="ajouter_botique">Botique</string>
+    <string name="produits">Produits</string>
 </resources>

@@ -1,7 +1,10 @@
 package com.user.myshop;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+
 
 
 public class HomeActivity extends AppCompatActivity {
@@ -10,5 +13,19 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+    }
+
+    public void Profie(View view) {
+
+    }
+
+    public void Favorite(View view) {
+    }
+
+    public void MesProduit(View view) {
+        startActivity(new Intent(this, Produits.class));
+    }
+
+    public void AddProduit(View view) {
     }
 }
