@@ -1,4 +1,4 @@
-package com.user.myshop.Asapter;
+package com.user.myshop.Adapter;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;

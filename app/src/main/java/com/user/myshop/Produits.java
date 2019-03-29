@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 
-import com.user.myshop.Asapter.ProduitsAdapter;
+import com.user.myshop.Adapter.ProduitsAdapter;
 import com.user.myshop.Models.Produit;
 
 import java.util.ArrayList;

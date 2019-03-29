@@ -12,5 +12,11 @@
     <string name="inscription">Inscription</string>
     <string name="adress">Address</string>
     <string name="t_l">Tél</string>
+    <string name="acceuil">Acceuil</string>
+    <string name="d_connecter">Déconnecter</string>
+    <string name="favori">Favorié</string>
+    <string name="profil">Profil</string>
+    <string name="mes_produit">Mes Produit</string>
+    <string name="ajouter_produit">Ajouter Produit</string>
     <string name="ajouter_botique">Botique</string>
 </resources>
