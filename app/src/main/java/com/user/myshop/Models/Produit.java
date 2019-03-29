@@ -26,6 +26,13 @@ public class Produit {
         this.Image = image;
 
     }
+    public Produit(String nom, String marque, String prix) {
+
+        this.Nom = nom;
+        this.Marque=marque;
+        this.Prix = prix;
+
+    }
     public int getId() {
         return Id;
     }

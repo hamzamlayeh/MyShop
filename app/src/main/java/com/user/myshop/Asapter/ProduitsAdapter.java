@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -50,7 +51,7 @@ public class ProduitsAdapter  extends BaseAdapter {
 
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+        public View getView(int position, View convertView, ViewGroup parent) {
 //        convertView = layoutInflater.inflate(R.layout.item_porduit, parent,false);
 
         RecyclerView.ViewHolder view;
@@ -68,10 +69,10 @@ public class ProduitsAdapter  extends BaseAdapter {
             marque.setText(list.get(position).getMarque());
             prix.setText( list.get(position).getPrix());
 
-        Picasso.get()
-                .load(list.get(position).getImage())
-                .resize(400,500)
-                .into(imgProduit);
+//        Picasso.get()
+//                .load(list.get(position).getImage())
+//                .resize(400,500)
+//                .into(imgProduit);
 
 
         }
