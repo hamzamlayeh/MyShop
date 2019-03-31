@@ -62,8 +62,8 @@
                 android:layout_height="112dp"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
+                android:foreground="?android:attr/selectableItemBackground"
                 android:clickable="true"
-                android:focusable="true"
                 android:onClick="Profie"
                 app:cardBackgroundColor="@color/colorPrimary"
                 app:cardCornerRadius="5dp"
@@ -94,11 +94,12 @@
             </android.support.v7.widget.CardView>
 
             <android.support.v7.widget.CardView
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
                 android:layout_width="match_parent"
                 android:layout_height="113dp"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
-                android:clickable="true"
                 android:focusable="true"
                 android:onClick="Favorite"
                 app:cardBackgroundColor="@color/colorPrimary"
@@ -138,6 +139,7 @@
             android:orientation="horizontal">
 
             <android.support.v7.widget.CardView
+                android:foreground="?android:attr/selectableItemBackground"
                 android:layout_width="match_parent"
                 android:layout_height="112dp"
                 android:layout_margin="10dp"
@@ -178,6 +180,7 @@
                 android:layout_height="113dp"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
+                android:foreground="?android:attr/selectableItemBackground"
                 android:clickable="true"
                 android:focusable="true"
                 android:onClick="AddProduit"
