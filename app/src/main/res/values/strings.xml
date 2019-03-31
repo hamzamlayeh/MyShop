@@ -20,4 +20,10 @@
     <string name="ajouter_produit">Ajouter Produit</string>
     <string name="ajouter_botique">Botique</string>
     <string name="produits">Produits</string>
+    <string name="champs_obligatoir">Champ obligatoire</string>
+    <string name="email_invalide">Adresse mail invalide</string>
+    <string name="chek_internet">Vous n\'êtes pas connectés à Internet</string>
+    <string name="MailNexistePas">Cette adresse mail deja utilisé</string>
+    <string name="insert_eronee">Insertion erronée</string>
+    <string name="EmailOuMotDePasseInvalide">Email ou mot de passe invalide</string>
 </resources>
