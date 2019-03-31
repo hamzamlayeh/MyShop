@@ -16,7 +16,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void Profie(View view) {
-
+        startActivity(new Intent(this, ProfileActivity.class));
     }
 
     public void Favorite(View view) {
