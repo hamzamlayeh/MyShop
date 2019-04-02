@@ -52,7 +52,7 @@ public class BotiqueActivity extends AppCompatActivity {
                                     int position, long id) {
 
                 // Sending image id to FullScreenActivity
-                Intent i = new Intent(getApplicationContext(), ProduitDetails.class);
+                Intent i = new Intent(getApplicationContext(), BotiqueDetails.class);
                 // passing array index
                 i.putExtra("id", position);
                 startActivity(i);

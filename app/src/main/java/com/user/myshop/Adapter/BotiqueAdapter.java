@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 import com.user.myshop.Models.Botique;
@@ -45,12 +46,12 @@ public class BotiqueAdapter extends BaseAdapter {
         return 0;
     }
 
-
+    boolean isFavo=false;
     @Override
         public View getView(int position, View convertView, ViewGroup parent) {
 //        convertView = layoutInflater.inflate(R.layout.item_porduit, parent,false);
 
-        RecyclerView.ViewHolder view;
+//        RecyclerView.ViewHolder view;
         LayoutInflater inflator = activity.getLayoutInflater();
         if(convertView==null)
         {
@@ -61,6 +62,21 @@ public class BotiqueAdapter extends BaseAdapter {
             TextView prix = convertView.findViewById(R.id.Prix);
             ImageView imgProduit = convertView.findViewById(R.id.imgProduit);
 
+            ImageView fav = convertView.findViewById(R.id.fav);
+            final ImageView ClicFav = convertView.findViewById(R.id.ClicFav);
+
+
+            fav.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    ClicFav.setVisibility(View.VISIBLE);
+                }
+            });
+
+            ClicFav.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                ClicFav.setVisibility(View.INVISIBLE);
+            }
+        });
             nomP.setText(list.get(position).getProduit().getNom());
             marque.setText(list.get(position).getProduit().getMarque());
             prix.setText(list.get(position).getProduit().getPrix());
