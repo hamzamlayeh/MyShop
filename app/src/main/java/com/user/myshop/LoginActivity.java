@@ -21,6 +21,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.user.myshop.Models.Botique;
 import com.user.myshop.Models.ConfigUrls;
 
 import org.json.JSONException;
@@ -40,7 +41,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+startActivity(new Intent(this, BotiqueActivity.class));
         context = this;
         Email = findViewById(R.id.email);
         Password = findViewById(R.id.password);
