@@ -6,15 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ProfileActivity">
 
-    <View
-        android:id="@+id/view13"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/colorAccent"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavigation"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -33,7 +24,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
-                    android:id="@+id/imageView3"
+                    android:id="@+id/img_profil"
                     android:layout_width="104dp"
                     android:layout_height="88dp"
                     android:layout_marginTop="33dp"
@@ -44,18 +35,17 @@
                     app:srcCompat="@drawable/test" />
 
                 <TextView
-                    android:id="@+id/textView4"
+                    android:id="@+id/nom"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="176dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="178dp"
-                    android:text="khaled hizawi"
                     android:textColor="@color/colorActive"
                     android:textSize="18sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+                    app:layout_constraintTop_toBottomOf="@+id/img_profil" />
 
                 <LinearLayout
                     android:id="@+id/linearLayout2"
@@ -66,7 +56,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.486"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView4">
+                    app:layout_constraintTop_toBottomOf="@+id/nom">
 
                     <android.support.v7.widget.CardView
                         android:layout_width="match_parent"
@@ -79,13 +69,12 @@
                             android:layout_height="match_parent">
 
                             <TextView
-                                android:id="@+id/textView10"
+                                android:id="@+id/nb_produit"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="8dp"
                                 android:layout_marginTop="4dp"
                                 android:layout_marginEnd="8dp"
-                                android:text="3256"
                                 android:textColor="@color/colorActive"
                                 android:textSize="18sp"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -99,7 +88,7 @@
                                 android:layout_marginStart="8dp"
                                 android:layout_marginTop="28dp"
                                 android:layout_marginEnd="8dp"
-                                android:text="Mes Produits"
+                                android:text="@string/mes_produits"
                                 android:textColor="@color/colorActive"
                                 android:textSize="18sp"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -119,13 +108,12 @@
                             android:layout_height="match_parent">
 
                             <TextView
-                                android:id="@+id/textView11"
+                                android:id="@+id/nb_favoris"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="8dp"
                                 android:layout_marginTop="4dp"
                                 android:layout_marginEnd="8dp"
-                                android:text="3256"
                                 android:textColor="@color/colorActive"
                                 android:textSize="18sp"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -139,7 +127,7 @@
                                 android:layout_marginStart="8dp"
                                 android:layout_marginTop="28dp"
                                 android:layout_marginEnd="8dp"
-                                android:text="Mes Favoris "
+                                android:text="@string/mes_favoris"
                                 android:textColor="@color/colorActive"
                                 android:textSize="18sp"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -153,17 +141,13 @@
                     android:id="@+id/ModifeProfile"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:layout_marginStart="102dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="28dp"
-                    android:layout_marginBottom="133dp"
                     android:adjustViewBounds="true"
-                    android:foreground="?android:attr/selectableItemBackground"
                     android:clickable="true"
                     android:cropToPadding="true"
-                    app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+                    android:foreground="?android:attr/selectableItemBackground"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/imageView3"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/ic_setting"
                     tools:ignore="VectorDrawableCompat" />
@@ -187,13 +171,12 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/email7"
+                    android:id="@+id/tel"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="17dp"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="164dp"
                     android:layout_marginEnd="16dp"
-                    android:text="+216 25 546 462"
                     android:textColor="@android:color/background_dark"
                     android:textSize="16sp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -206,22 +189,21 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="172dp"
+                    android:layout_marginTop="22dp"
                     android:layout_marginEnd="16dp"
                     android:background="@color/withoutColoredBackground"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/Email" />
+                    app:layout_constraintTop_toBottomOf="@+id/tel" />
 
                 <TextView
-                    android:id="@+id/Email"
+                    android:id="@+id/email"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="9dp"
                     android:layout_marginEnd="16dp"
-                    android:text="khaledhizawi@gmail.com"
                     android:textColor="@android:color/background_dark"
                     android:textSize="16sp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -238,7 +220,7 @@
                     android:background="@color/withoutColoredBackground"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/Email" />
+                    app:layout_constraintTop_toBottomOf="@+id/email" />
 
                 <TextView
                     android:id="@+id/LabelEmail"
@@ -263,13 +245,12 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/Adresse"
+                    android:id="@+id/adress"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="88dp"
                     android:layout_marginEnd="16dp"
-                    android:text="Rue correspondante avec modificateur"
                     android:textColor="@android:color/background_dark"
                     android:textSize="16sp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -282,23 +263,32 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="92dp"
+                    android:layout_marginTop="13dp"
                     android:layout_marginEnd="16dp"
                     android:background="@color/withoutColoredBackground"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/Email" />
+                    app:layout_constraintTop_toBottomOf="@+id/adress" />
 
             </android.support.constraint.ConstraintLayout>
 
         </android.support.constraint.ConstraintLayout>
     </ScrollView>
 
+    <View
+        android:id="@+id/view13"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorAccent"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <com.luseen.luseenbottomnavigation.BottomNavigation.BottomNavigationView
         android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="82dp"
         android:layout_alignParentBottom="true"
         app:bnv_active_color="@color/colorPrimary"
         app:bnv_colored_background="false"

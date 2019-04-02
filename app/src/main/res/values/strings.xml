@@ -18,7 +18,7 @@
     <string name="profil">Profil</string>
     <string name="mes_produit">Mes Produit</string>
     <string name="ajouter_produit">Ajouter Produit</string>
-    <string name="ajouter_botique">Botique</string>
+    <string name="ajouter_botique">Boutique</string>
     <string name="produits">Produits</string>
     <string name="champs_obligatoir">Champ obligatoire</string>
     <string name="email_invalide">Adresse mail invalide</string>
@@ -26,4 +26,6 @@
     <string name="MailNexistePas">Cette adresse mail deja utilisé</string>
     <string name="insert_eronee">Insertion erronée</string>
     <string name="EmailOuMotDePasseInvalide">Email ou mot de passe invalide</string>
+    <string name="mes_produits">Mes Produits</string>
+    <string name="mes_favoris">Mes Favoris</string>
 </resources>
