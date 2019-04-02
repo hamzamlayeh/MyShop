@@ -27,5 +27,6 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void AddProduit(View view) {
+        startActivity(new Intent(this,AjoutProduitActivity.class));
     }
 }
