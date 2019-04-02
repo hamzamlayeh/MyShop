@@ -1,11 +1,8 @@
 package com.user.myshop;
 
-import android.content.Intent;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.Toast;
 
@@ -13,55 +10,40 @@ import com.luseen.luseenbottomnavigation.BottomNavigation.BottomNavigationItem;
 import com.luseen.luseenbottomnavigation.BottomNavigation.BottomNavigationView;
 import com.luseen.luseenbottomnavigation.BottomNavigation.OnBottomNavigationItemClickListener;
 import com.user.myshop.Adapter.BotiqueAdapter;
-import com.user.myshop.Adapter.ProduitsAdapter;
+import com.user.myshop.Adapter.FavoriteAdapter;
 import com.user.myshop.Models.Botique;
+import com.user.myshop.Models.Favorite;
 import com.user.myshop.Models.Produit;
 
 import java.util.ArrayList;
 
-public class BotiqueActivity extends AppCompatActivity {
+public class FavoriteActivity extends AppCompatActivity {
+    BottomNavigationView bottomNavigationView;
     GridView grid;
     ArrayList<Botique> list_B = new ArrayList<>();
     ArrayList<Produit> list = new ArrayList<>();
-    BottomNavigationView bottomNavigationView;
+    ArrayList<Favorite> list_F = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_botique);
+        setContentView(R.layout.activity_favorite);
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavigation);
+        AddMenu();
         grid = findViewById(R.id.grid);
 
         list.add(new Produit("rahma", "belhaj", "http://13.80.41.22/stillvalid/StillValid/web/bundles/contrats/970665416.jpg", "2015"));
-        list.add(new Produit("rahma", "belhaj", "http://13.80.41.22/stillvalid/StillValid/web/bundles/contrats/970665416.jpg", "2015"));
-        list.add(new Produit("rahma", "belhaj", "http://13.80.41.22/stillvalid/StillValid/web/bundles/contrats/970665416.jpg", "2015"));
-        list.add(new Produit("rahma", "belhaj", "http://13.80.41.22/stillvalid/StillValid/web/bundles/contrats/970665416.jpg", "2015"));
-        list.add(new Produit("khouloud", "aloui", "http://13.80.41.22/stillvalid/StillValid/web/bundles/contrats/970665416.jpg", "2015"));
-        list.add(new Produit("khouloud", "aloui", "http://13.80.41.22/stillvalid/StillValid/web/bundles/contrats/970665416.jpg", "251"));
-        list.add(new Produit("khouloud", "aloui", "http://13.80.41.22/stillvalid/StillValid/web/bundles/contrats/970665416.jpg", "57"));
-
 
         list_B.add(new Botique(list.get(0)));
-        list_B.add(new Botique(list.get(0)));
-        list_B.add(new Botique(list.get(0)));
-        list_B.add(new Botique(list.get(0)));
-        BotiqueAdapter adapter = new BotiqueAdapter(this,list_B );
+
+
+        list_F.add(new Favorite(list_B.get(0)));
+        list_F.add(new Favorite(list_B.get(0)));
+        list_F.add(new Favorite(list_B.get(0)));
+        list_F.add(new Favorite(list_B.get(0)));
+        list_F.add(new Favorite(list_B.get(0)));
+        FavoriteAdapter adapter = new FavoriteAdapter(this,list_F );
         grid.setAdapter(adapter);
-
-        grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View v,
-                                    int position, long id) {
-
-                // Sending image id to FullScreenActivity
-                Intent i = new Intent(getApplicationContext(), BotiqueDetails.class);
-                // passing array index
-                i.putExtra("id", position);
-                startActivity(i);
-            }
-        });
-        AddMenu();
     }
-
     private void AddMenu() {
         BottomNavigationItem bottomNavigationItem = new BottomNavigationItem
                 (getString(R.string.profil), ContextCompat.getColor(this, R.color.colorPrimary), R.drawable.ic_profile);
