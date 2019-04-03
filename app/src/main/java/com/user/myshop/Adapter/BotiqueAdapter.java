@@ -1,17 +1,14 @@
 package com.user.myshop.Adapter;
 
 import android.app.Activity;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.squareup.picasso.Picasso;
-import com.user.myshop.Models.Botique;
+import com.user.myshop.Models.Boutique;
 
 import com.user.myshop.R;
 
@@ -21,10 +18,10 @@ import java.util.List;
 public class BotiqueAdapter extends BaseAdapter {
 
     private LayoutInflater layoutInflater;
-     private List<Botique> list;
+     private List<Boutique> list;
     private Activity activity;
 
-    public BotiqueAdapter(Activity  context, ArrayList<Botique> list) {
+    public BotiqueAdapter(Activity  context, ArrayList<Boutique> list) {
         super();
         this.activity=context;
         this.list=list;

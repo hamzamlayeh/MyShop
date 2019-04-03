@@ -13,8 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".FavoriteActivity"></activity>
-        <activity android:name=".BotiqueDetails" />
-        <activity android:name=".BotiqueActivity" />
+        <activity android:name=".BoutiqueDetails" />
+        <activity android:name=".BoutiqueActivity" />
         <activity android:name=".AjoutProduitActivity" />
         <activity android:name=".ProfileActivity" />
         <activity android:name=".ProduitDetails" />

@@ -8,7 +8,6 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.user.myshop.Models.Botique;
 import com.user.myshop.Models.Favorite;
 import com.user.myshop.R;
 
@@ -60,9 +59,9 @@ public class FavoriteAdapter extends BaseAdapter {
             ImageView imgProduit = convertView.findViewById(R.id.imgProduit);
 
 
-            nomP.setText(list.get(position).getBotique().getProduit().getNom());
-            marque.setText(list.get(position).getBotique().getProduit().getMarque());
-            prix.setText(list.get(position).getBotique().getProduit().getPrix());
+            nomP.setText(list.get(position).getBoutique().getProduit().getNom());
+            marque.setText(list.get(position).getBoutique().getProduit().getMarque());
+            prix.setText(list.get(position).getBoutique().getProduit().getPrix());
 
 //            prix.setText( list.get(position).getPrix());
 

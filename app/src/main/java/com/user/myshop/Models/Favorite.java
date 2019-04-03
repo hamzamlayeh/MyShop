@@ -1,17 +1,17 @@
 package com.user.myshop.Models;
 
 public class Favorite {
-    private Botique botique;
+    private Boutique boutique;
 
-    public Favorite(Botique botique) {
-        this.botique = botique;
+    public Favorite(Boutique boutique) {
+        this.boutique = boutique;
     }
 
-    public Botique getBotique() {
-        return botique;
+    public Boutique getBoutique() {
+        return boutique;
     }
 
-    public void setBotique(Botique botique) {
-        this.botique = botique;
+    public void setBoutique(Boutique boutique) {
+        this.boutique = boutique;
     }
 }

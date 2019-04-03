@@ -1,13 +1,13 @@
 package com.user.myshop.Models;
 
-public class Botique {
+public class Boutique {
     private int Id;
     private String Catigorie;
     private String Tel;
     private String Email;
     private  Produit Produit;
 
-    public Botique(int id, String catigorie, String tel, String email, com.user.myshop.Models.Produit produit) {
+    public Boutique(int id, String catigorie, String tel, String email, com.user.myshop.Models.Produit produit) {
         Id = id;
         Catigorie = catigorie;
         Tel = tel;
@@ -15,7 +15,7 @@ public class Botique {
         Produit = produit;
     }
 
-    public Botique( com.user.myshop.Models.Produit produit) {
+    public Boutique(com.user.myshop.Models.Produit produit) {
 
         Produit = produit;
     }

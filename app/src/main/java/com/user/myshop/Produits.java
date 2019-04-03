@@ -63,7 +63,7 @@ public class Produits extends AppCompatActivity {
         BottomNavigationItem bottomNavigationItem2 = new BottomNavigationItem
                 (getString(R.string.favori), ContextCompat.getColor(this, R.color.colorAccent), R.drawable.ic_favorite);
         BottomNavigationItem bottomNavigationItem3 = new BottomNavigationItem
-                (getString(R.string.ajouter_produit), ContextCompat.getColor(this, R.color.colorAccent), R.drawable.ic_addproduit);
+                (getString(R.string.ajouter_botique), ContextCompat.getColor(this, R.color.colorAccent), R.drawable.ic_addproduit);
         bottomNavigationView.addTab(bottomNavigationItem);
         bottomNavigationView.addTab(bottomNavigationItem1);
         bottomNavigationView.addTab(bottomNavigationItem2);

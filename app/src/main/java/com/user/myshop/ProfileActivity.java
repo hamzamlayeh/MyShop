@@ -1,6 +1,7 @@
 package com.user.myshop;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -98,18 +99,30 @@ public class ProfileActivity extends AppCompatActivity {
         BottomNavigationItem bottomNavigationItem2 = new BottomNavigationItem
                 (getString(R.string.favori), ContextCompat.getColor(this, R.color.colorAccent), R.drawable.ic_favorite);
         BottomNavigationItem bottomNavigationItem3 = new BottomNavigationItem
-                (getString(R.string.ajouter_produit), ContextCompat.getColor(this, R.color.colorAccent), R.drawable.ic_addproduit);
-        BottomNavigationItem bottomNavigationItem4 = new BottomNavigationItem
                 (getString(R.string.ajouter_botique), ContextCompat.getColor(this, R.color.colorAccent), R.drawable.ic_addproduit);
+
         bottomNavigationView.addTab(bottomNavigationItem);
         bottomNavigationView.addTab(bottomNavigationItem1);
         bottomNavigationView.addTab(bottomNavigationItem2);
         bottomNavigationView.addTab(bottomNavigationItem3);
-        bottomNavigationView.addTab(bottomNavigationItem4);
         bottomNavigationView.setOnBottomNavigationItemClickListener(new OnBottomNavigationItemClickListener() {
             @Override
             public void onNavigationItemClick(int index) {
-                Toast.makeText(getApplicationContext(), "Item " + index + " clicked", Toast.LENGTH_SHORT).show();
+                switch (index){
+                    case 0:
+                        startActivity(new Intent(getApplicationContext(),ProfileActivity.class));
+                        break;
+                    case 1:
+                        startActivity(new Intent(getApplicationContext(),Produits.class));
+                        break;
+                    case 2:
+                        startActivity(new Intent(getApplicationContext(),FavoriteActivity.class));
+                        break;
+                    case 3:
+                        startActivity(new Intent(getApplicationContext(), BoutiqueActivity.class));
+                        break;
+                }
+               // Toast.makeText(getApplicationContext(), "Item " + index + " clicked", Toast.LENGTH_SHORT).show();
             }
         });
     }

@@ -20,13 +20,14 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void Favorite(View view) {
+        startActivity(new Intent(this, FavoriteActivity.class));
     }
 
     public void MesProduit(View view) {
         startActivity(new Intent(this, Produits.class));
     }
 
-    public void AddProduit(View view) {
-        startActivity(new Intent(this,AjoutProduitActivity.class));
+    public void Boutique(View view) {
+        startActivity(new Intent(this, BoutiqueActivity.class));
     }
 }

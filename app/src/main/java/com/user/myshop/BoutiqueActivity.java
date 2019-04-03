@@ -13,21 +13,20 @@ import com.luseen.luseenbottomnavigation.BottomNavigation.BottomNavigationItem;
 import com.luseen.luseenbottomnavigation.BottomNavigation.BottomNavigationView;
 import com.luseen.luseenbottomnavigation.BottomNavigation.OnBottomNavigationItemClickListener;
 import com.user.myshop.Adapter.BotiqueAdapter;
-import com.user.myshop.Adapter.ProduitsAdapter;
-import com.user.myshop.Models.Botique;
+import com.user.myshop.Models.Boutique;
 import com.user.myshop.Models.Produit;
 
 import java.util.ArrayList;
 
-public class BotiqueActivity extends AppCompatActivity {
+public class BoutiqueActivity extends AppCompatActivity {
     GridView grid;
-    ArrayList<Botique> list_B = new ArrayList<>();
+    ArrayList<Boutique> list_B = new ArrayList<>();
     ArrayList<Produit> list = new ArrayList<>();
     BottomNavigationView bottomNavigationView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_botique);
+        setContentView(R.layout.activity_boutique);
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavigation);
         grid = findViewById(R.id.grid);
 
@@ -40,10 +39,10 @@ public class BotiqueActivity extends AppCompatActivity {
         list.add(new Produit("khouloud", "aloui", "http://13.80.41.22/stillvalid/StillValid/web/bundles/contrats/970665416.jpg", "57"));
 
 
-        list_B.add(new Botique(list.get(0)));
-        list_B.add(new Botique(list.get(0)));
-        list_B.add(new Botique(list.get(0)));
-        list_B.add(new Botique(list.get(0)));
+        list_B.add(new Boutique(list.get(0)));
+        list_B.add(new Boutique(list.get(0)));
+        list_B.add(new Boutique(list.get(0)));
+        list_B.add(new Boutique(list.get(0)));
         BotiqueAdapter adapter = new BotiqueAdapter(this,list_B );
         grid.setAdapter(adapter);
 
@@ -53,7 +52,7 @@ public class BotiqueActivity extends AppCompatActivity {
                                     int position, long id) {
 
                 // Sending image id to FullScreenActivity
-                Intent i = new Intent(getApplicationContext(), BotiqueDetails.class);
+                Intent i = new Intent(getApplicationContext(), BoutiqueDetails.class);
                 // passing array index
                 i.putExtra("id", position);
                 startActivity(i);
@@ -70,7 +69,7 @@ public class BotiqueActivity extends AppCompatActivity {
         BottomNavigationItem bottomNavigationItem2 = new BottomNavigationItem
                 (getString(R.string.favori), ContextCompat.getColor(this, R.color.colorAccent), R.drawable.ic_favorite);
         BottomNavigationItem bottomNavigationItem3 = new BottomNavigationItem
-                (getString(R.string.ajouter_produit), ContextCompat.getColor(this, R.color.colorAccent), R.drawable.ic_addproduit);
+                (getString(R.string.ajouter_botique), ContextCompat.getColor(this, R.color.colorAccent), R.drawable.ic_addproduit);
         bottomNavigationView.addTab(bottomNavigationItem);
         bottomNavigationView.addTab(bottomNavigationItem1);
         bottomNavigationView.addTab(bottomNavigationItem2);

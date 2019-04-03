@@ -9,12 +9,12 @@ import com.luseen.luseenbottomnavigation.BottomNavigation.BottomNavigationItem;
 import com.luseen.luseenbottomnavigation.BottomNavigation.BottomNavigationView;
 import com.luseen.luseenbottomnavigation.BottomNavigation.OnBottomNavigationItemClickListener;
 
-public class BotiqueDetails extends AppCompatActivity {
+public class BoutiqueDetails extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_botique_details);
+        setContentView(R.layout.activity_botuique_details);
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavigation);
         AddMenu();
     }
@@ -27,7 +27,7 @@ public class BotiqueDetails extends AppCompatActivity {
         BottomNavigationItem bottomNavigationItem2 = new BottomNavigationItem
                 (getString(R.string.favori), ContextCompat.getColor(this, R.color.colorAccent), R.drawable.ic_favorite);
         BottomNavigationItem bottomNavigationItem3 = new BottomNavigationItem
-                (getString(R.string.ajouter_produit), ContextCompat.getColor(this, R.color.colorAccent), R.drawable.ic_addproduit);
+                (getString(R.string.ajouter_botique), ContextCompat.getColor(this, R.color.colorAccent), R.drawable.ic_addproduit);
         bottomNavigationView.addTab(bottomNavigationItem);
         bottomNavigationView.addTab(bottomNavigationItem1);
         bottomNavigationView.addTab(bottomNavigationItem2);

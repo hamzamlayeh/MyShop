@@ -183,7 +183,7 @@
                 android:foreground="?android:attr/selectableItemBackground"
                 android:clickable="true"
                 android:focusable="true"
-                android:onClick="AddProduit"
+                android:onClick="Boutique"
                 app:cardBackgroundColor="@color/colorPrimary"
                 app:cardCornerRadius="5dp"
                 app:cardElevation="10dp"
@@ -208,7 +208,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="@string/ajouter_produit"
+                        android:text="@string/ajouter_botique"
                         android:textColor="#FFF"
                         android:textSize="18sp" />
                 </LinearLayout>
