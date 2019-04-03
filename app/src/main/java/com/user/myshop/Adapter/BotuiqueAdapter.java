@@ -15,13 +15,13 @@ import com.user.myshop.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BotiqueAdapter extends BaseAdapter {
+public class BotuiqueAdapter extends BaseAdapter {
 
     private LayoutInflater layoutInflater;
      private List<Boutique> list;
     private Activity activity;
 
-    public BotiqueAdapter(Activity  context, ArrayList<Boutique> list) {
+    public BotuiqueAdapter(Activity  context, ArrayList<Boutique> list) {
         super();
         this.activity=context;
         this.list=list;

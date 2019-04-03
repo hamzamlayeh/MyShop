@@ -12,7 +12,7 @@ import android.widget.Toast;
 import com.luseen.luseenbottomnavigation.BottomNavigation.BottomNavigationItem;
 import com.luseen.luseenbottomnavigation.BottomNavigation.BottomNavigationView;
 import com.luseen.luseenbottomnavigation.BottomNavigation.OnBottomNavigationItemClickListener;
-import com.user.myshop.Adapter.BotiqueAdapter;
+import com.user.myshop.Adapter.BotuiqueAdapter;
 import com.user.myshop.Models.Boutique;
 import com.user.myshop.Models.Produit;
 
@@ -43,7 +43,7 @@ public class BoutiqueActivity extends AppCompatActivity {
         list_B.add(new Boutique(list.get(0)));
         list_B.add(new Boutique(list.get(0)));
         list_B.add(new Boutique(list.get(0)));
-        BotiqueAdapter adapter = new BotiqueAdapter(this,list_B );
+        BotuiqueAdapter adapter = new BotuiqueAdapter(this,list_B );
         grid.setAdapter(adapter);
 
         grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
