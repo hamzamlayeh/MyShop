@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Markeet</string>
     <string name="www_myshop_tn">www.Markeet.tn</string>
+    <string name="internal_storage">Internal storage</string>
     <string name="mot_de_passe">Mot de passe</string>
     <string name="email">Email</string>
     <string name="valider">Valider</string>
@@ -34,4 +35,7 @@
     <string name="nom_poduit">Nom Poduit</string>
     <string name="gallery">Gallery</string>
     <string name="importer_image">Importer Image</string>
+    <string name="chose_img">Choisir au mois une image</string>
+    <string name="add_prod_succ">Votre produit a éte ajouté avec succès</string>
+
 </resources>
