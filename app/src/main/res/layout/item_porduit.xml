@@ -57,12 +57,12 @@
                 app:layout_constraintTop_toBottomOf="@+id/imgProduit" />
 
             <TextView
-                android:id="@+id/Marque"
+                android:id="@+id/date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="4dp"
-                android:text="Marque"
+                android:text="Date"
                 android:textColor="@android:color/background_dark"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/NomProduit" />
@@ -83,7 +83,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="192dp"
                 android:layout_marginEnd="28dp"
-                android:text="DT"
+                android:text="@string/dt"
                 android:textColor="@android:color/background_dark"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/imgProduit" />

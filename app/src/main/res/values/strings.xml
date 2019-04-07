@@ -37,5 +37,6 @@
     <string name="importer_image">Importer Image</string>
     <string name="chose_img">Choisir au mois une image</string>
     <string name="add_prod_succ">Votre produit a éte ajouté avec succès</string>
+    <string name="dt">DT</string>
 
 </resources>

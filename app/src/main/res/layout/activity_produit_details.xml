@@ -32,12 +32,12 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <TextView
-        android:id="@+id/Marque"
+        android:id="@+id/Date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:text="Marque"
+        android:text="Date"
         android:textColor="@android:color/background_dark"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -63,7 +63,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
         android:layout_marginEnd="8dp"
-        android:text="DT"
+        android:text="@string/dt"
         android:textColor="@color/colorAccent"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -84,7 +84,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Marque" />
+        app:layout_constraintTop_toBottomOf="@+id/Date" />
 
     <Button
         android:id="@+id/button"
@@ -95,7 +95,7 @@
         android:layout_marginEnd="8dp"
         android:background="@drawable/style_btn"
         android:drawableTop="@drawable/ic_icon"
-        android:onClick="Ajouter"
+        android:onClick="AddBoutique"
         android:paddingTop="6dp"
         android:paddingBottom="6dp"
         android:text="@string/ajouter_botique"
@@ -114,7 +114,7 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
         android:background="@drawable/style_btn"
-        android:onClick="Ajouter"
+        android:onClick="LoadPhoto"
         android:paddingTop="6dp"
         android:paddingBottom="6dp"
         android:text="Voir Photo"

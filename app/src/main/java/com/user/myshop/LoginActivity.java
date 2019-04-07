@@ -39,7 +39,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-startActivity(new Intent(this, AjoutProduitActivity.class));
+        //startActivity(new Intent(this, ProduitsActivity.class));
         context = this;
         Email = findViewById(R.id.email);
         Password = findViewById(R.id.password);

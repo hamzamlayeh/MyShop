@@ -8,9 +8,11 @@ import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
+import retrofit2.http.Query;
 
 public interface API {
     @Multipart
@@ -24,4 +26,10 @@ public interface API {
             @Part("date") RequestBody date,
             @Part("id_user") RequestBody id_user
     );
+
+    @GET("GetProdById.php")
+    Call<RSResponse> loadProduit(@Query("id_prod") String id_prod);
+
+    @GET("GetUserProd.php")
+    Call<RSResponse> loadUserProduit(@Query("id_user") String id_user);
 }

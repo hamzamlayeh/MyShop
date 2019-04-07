@@ -1,16 +1,24 @@
 package com.user.myshop.Models;
 
-public class Produit {
-    private int Id;
+import java.io.Serializable;
+import java.util.List;
+
+public class Produit implements Serializable {
+    private int id_prod;
     private String Nom;
     private String Description;
     private String Marque;
     private String Image;
     private String Prix;
-    private int Id_User;
+    private String Id_User;
+    private String date;
+    private String[] listimage;
 
-    public Produit(int id, String nom, String description, String marque, String image, String prix, int id_User) {
-        Id = id;
+    public Produit() {
+    }
+
+    public Produit(int id, String nom, String description, String marque, String image, String prix, String id_User) {
+        id_prod = id;
         Nom = nom;
         Description = description;
         Marque = marque;
@@ -34,11 +42,11 @@ public class Produit {
 
     }
     public int getId() {
-        return Id;
+        return id_prod;
     }
 
     public void setId(int id) {
-        Id = id;
+        id_prod = id;
     }
 
     public String getNom() {
@@ -73,11 +81,11 @@ public class Produit {
         Prix = prix;
     }
 
-    public int getId_User() {
+    public String getId_User() {
         return Id_User;
     }
 
-    public void setId_User(int id_User) {
+    public void setId_User(String id_User) {
         Id_User = id_User;
     }
 
@@ -87,5 +95,21 @@ public class Produit {
 
     public void setImage(String image) {
         Image = image;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String[] getListimage() {
+        return listimage;
+    }
+
+    public void setListimage(String[] listimage) {
+        this.listimage = listimage;
     }
 }

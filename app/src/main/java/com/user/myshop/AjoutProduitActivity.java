@@ -33,7 +33,6 @@ import com.user.myshop.Webservice.WebService;
 
 import java.io.File;
 import java.io.IOException;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -44,7 +43,6 @@ import java.util.Locale;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -108,7 +106,7 @@ public class AjoutProduitActivity extends AppCompatActivity {
                 public void onResponse(Call<RSResponse> call, Response<RSResponse> response) {
                     loading.dismiss();
                     if (response.body().getStatus() == 1) {
-                        startActivity(new Intent(getApplicationContext(), Produits.class));
+                        startActivity(new Intent(getApplicationContext(), ProduitsActivity.class));
                         Toast.makeText(getApplicationContext(), getString(R.string.add_prod_succ), Toast.LENGTH_SHORT).show();
                     } else if (response.body().getStatus() == 0) {
                         Toast.makeText(getApplicationContext(), "err", Toast.LENGTH_SHORT).show();
@@ -292,7 +290,7 @@ public class AjoutProduitActivity extends AppCompatActivity {
                         startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
                         break;
                     case 1:
-                        startActivity(new Intent(getApplicationContext(), Produits.class));
+                        startActivity(new Intent(getApplicationContext(), ProduitsActivity.class));
                         break;
                     case 2:
                         startActivity(new Intent(getApplicationContext(), FavoriteActivity.class));

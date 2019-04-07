@@ -24,7 +24,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void MesProduit(View view) {
-        startActivity(new Intent(this, Produits.class));
+        startActivity(new Intent(this, ProduitsActivity.class));
     }
 
     public void Boutique(View view) {

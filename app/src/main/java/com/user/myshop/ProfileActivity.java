@@ -113,7 +113,7 @@ public class ProfileActivity extends AppCompatActivity {
                         startActivity(new Intent(getApplicationContext(),ProfileActivity.class));
                         break;
                     case 1:
-                        startActivity(new Intent(getApplicationContext(),Produits.class));
+                        startActivity(new Intent(getApplicationContext(), ProduitsActivity.class));
                         break;
                     case 2:
                         startActivity(new Intent(getApplicationContext(),FavoriteActivity.class));
