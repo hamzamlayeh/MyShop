@@ -31,32 +31,32 @@
             app:layout_constraintTop_toTopOf="parent" />
     </android.support.constraint.ConstraintLayout>
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="29dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/style_btn"
-        android:text="Ajouter Produit"
-        android:onClick="AddProd"
-        android:textColor="@android:color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
-
     <GridView
         android:id="@+id/grid"
         android:layout_width="match_parent"
         android:layout_height="0dp"
 
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
         android:numColumns="2"
         app:layout_constraintBottom_toTopOf="@+id/view3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
+        android:clickable="true"
+        android:onClick="AddProd"
+        app:layout_anchorGravity="bottom|right|end"
+        app:layout_constraintBottom_toTopOf="@+id/view3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_addproduit"
+        tools:ignore="MissingConstraints,VectorDrawableCompat" />
 
     <View
         android:id="@+id/view3"
