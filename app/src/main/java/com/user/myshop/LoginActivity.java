@@ -21,6 +21,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.user.myshop.Models.ConfigUrls;
+import com.user.myshop.Utils.Helpers;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -39,7 +40,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        //startActivity(new Intent(this, ProduitsActivity.class));
+        //startActivity(new Intent(this, AddBoutiqueActivity.class));
         context = this;
         Email = findViewById(R.id.email);
         Password = findViewById(R.id.password);
@@ -55,7 +56,7 @@ public class LoginActivity extends AppCompatActivity {
         mail = Email.getText().toString().trim();
         password = Password.getText().toString().trim();
         if (Valider()) {
-            if (isOnline()) {
+            if (Helpers.isConnected(this)) {
                 final ProgressDialog loading = ProgressDialog.show(context, "Traitement Des Données...", "S'il Vous Plaît, Attendez...", false, false);
                 StringRequest request = new StringRequest(Request.Method.POST, ConfigUrls.LOGIN, new Response.Listener<String>() {
                     @Override
@@ -119,11 +120,5 @@ public class LoginActivity extends AppCompatActivity {
             valide = false;
         }
         return valide;
-    }
-
-    protected boolean isOnline() {
-        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo netInfo = cm.getActiveNetworkInfo();
-        return netInfo != null && netInfo.isConnectedOrConnecting();
     }
 }

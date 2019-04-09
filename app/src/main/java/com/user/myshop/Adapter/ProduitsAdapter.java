@@ -9,25 +9,21 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.user.myshop.Models.Produit;
 import com.user.myshop.Models.Produits;
 import com.user.myshop.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class ProduitsAdapter  extends BaseAdapter {
+public class ProduitsAdapter extends BaseAdapter {
 
-    private LayoutInflater layoutInflater;
-     private List<Produits> list;
+    private List<Produits> list;
     private Activity activity;
 
-    public ProduitsAdapter(Activity  context, List<Produits> list) {
+    public ProduitsAdapter(Activity context, List<Produits> list) {
         super();
-        this.activity=context;
-        this.list=list;
+        this.activity = context;
+        this.list = list;
     }
-
 
     @Override
     public int getCount() {
@@ -36,7 +32,7 @@ public class ProduitsAdapter  extends BaseAdapter {
 
     @Override
     public Object getItem(int position) {
-        return  list.get(position);
+        return list.get(position);
     }
 
     @Override
@@ -46,34 +42,30 @@ public class ProduitsAdapter  extends BaseAdapter {
 
 
     @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, ViewGroup parent) {
 //        convertView = layoutInflater.inflate(R.layout.item_porduit, parent,false);
         RecyclerView.ViewHolder view;
         LayoutInflater inflator = activity.getLayoutInflater();
-        if(convertView==null)
-        {
+        if (convertView == null) {
             convertView = inflator.inflate(R.layout.item_porduit, null);
 
+            TextView Id = convertView.findViewById(R.id.Id);
             TextView nomP = convertView.findViewById(R.id.NomProduit);
             TextView date = convertView.findViewById(R.id.date);
             TextView prix = convertView.findViewById(R.id.Prix);
-            ImageView imgProduit = convertView.findViewById(R.id.imgProduit);
+            // imgProduit = convertView.findViewById(R.id.imgProduit);
 
+            Id.setText(String.valueOf(list.get(position).getId()));
             nomP.setText(list.get(position).getNom());
             date.setText(list.get(position).getDate());
-            prix.setText( list.get(position).getPrix());
+            prix.setText(list.get(position).getPrix());
 
 //        Picasso.get()
 //                .load(list.get(position).getImage())
 //                .resize(400,500)
 //                .into(imgProduit);
 
-
         }
-
-
         return convertView;
     }
-
-
 }

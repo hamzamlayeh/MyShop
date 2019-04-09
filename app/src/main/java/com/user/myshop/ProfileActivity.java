@@ -21,6 +21,7 @@ import com.luseen.luseenbottomnavigation.BottomNavigation.BottomNavigationView;
 import com.luseen.luseenbottomnavigation.BottomNavigation.OnBottomNavigationItemClickListener;
 import com.user.myshop.Models.ConfigUrls;
 import com.user.myshop.Models.Users;
+import com.user.myshop.Utils.Helpers;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -52,7 +53,7 @@ public class ProfileActivity extends AppCompatActivity {
         if (ID_user != 0) {
             LoadUserInfo(ID_user);
         }
-        AddMenu();
+        Helpers.AddMenu(this, bottomNavigationView);
     }
 
     private void LoadUserInfo(int id_user) {
@@ -88,42 +89,5 @@ public class ProfileActivity extends AppCompatActivity {
         });
         RequestQueue queue = Volley.newRequestQueue(this);
         queue.add(request);
-    }
-
-
-    private void AddMenu() {
-        BottomNavigationItem bottomNavigationItem = new BottomNavigationItem
-                (getString(R.string.profil), ContextCompat.getColor(this, R.color.colorPrimary), R.drawable.ic_profile);
-        BottomNavigationItem bottomNavigationItem1 = new BottomNavigationItem
-                (getString(R.string.produits), ContextCompat.getColor(this, R.color.colorAccent), R.drawable.ic_allproduit);
-        BottomNavigationItem bottomNavigationItem2 = new BottomNavigationItem
-                (getString(R.string.favori), ContextCompat.getColor(this, R.color.colorAccent), R.drawable.ic_favorite);
-        BottomNavigationItem bottomNavigationItem3 = new BottomNavigationItem
-                (getString(R.string.ajouter_botique), ContextCompat.getColor(this, R.color.colorAccent), R.drawable.ic_addproduit);
-
-        bottomNavigationView.addTab(bottomNavigationItem);
-        bottomNavigationView.addTab(bottomNavigationItem1);
-        bottomNavigationView.addTab(bottomNavigationItem2);
-        bottomNavigationView.addTab(bottomNavigationItem3);
-        bottomNavigationView.setOnBottomNavigationItemClickListener(new OnBottomNavigationItemClickListener() {
-            @Override
-            public void onNavigationItemClick(int index) {
-                switch (index){
-                    case 0:
-                        startActivity(new Intent(getApplicationContext(),ProfileActivity.class));
-                        break;
-                    case 1:
-                        startActivity(new Intent(getApplicationContext(), ProduitsActivity.class));
-                        break;
-                    case 2:
-                        startActivity(new Intent(getApplicationContext(),FavoriteActivity.class));
-                        break;
-                    case 3:
-                        startActivity(new Intent(getApplicationContext(), BoutiqueActivity.class));
-                        break;
-                }
-               // Toast.makeText(getApplicationContext(), "Item " + index + " clicked", Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 }

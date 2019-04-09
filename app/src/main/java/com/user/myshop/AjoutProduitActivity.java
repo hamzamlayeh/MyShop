@@ -27,6 +27,7 @@ import com.luseen.luseenbottomnavigation.BottomNavigation.BottomNavigationItem;
 import com.luseen.luseenbottomnavigation.BottomNavigation.BottomNavigationView;
 import com.luseen.luseenbottomnavigation.BottomNavigation.OnBottomNavigationItemClickListener;
 import com.user.myshop.Models.RSResponse;
+import com.user.myshop.Utils.Constants;
 import com.user.myshop.Utils.FileCompressor;
 import com.user.myshop.Utils.FileUtils;
 import com.user.myshop.Webservice.WebService;
@@ -47,12 +48,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.user.myshop.Utils.Constants.REQUEST_PERMISSION_CAMERA;
+
 public class AjoutProduitActivity extends AppCompatActivity {
 
-    private static final int REQUEST_TAKE_PHOTO = 100;
-    private static final int REQUEST_GALLERY_PHOTO = 200;
-    private static final int REQUEST_PERMISSION_STORAGE = 300;
-    private static final int REQUEST_PERMISSION_CAMERA = 400;
     private FileCompressor mCompressor;
     private File mPhotoFile;
     private List<Uri> listPics = new ArrayList<>();
@@ -90,7 +89,7 @@ public class AjoutProduitActivity extends AppCompatActivity {
             List<MultipartBody.Part> parts = new ArrayList<>();
             for (int i = 0; i < listPics.size(); i++) {
                 parts.add(prepareFilePart("image[]", listPics.get(i)));
-                Log.d("file", listPics.get(i) + "");
+                //Log.d("file", listPics.get(i) + "");
             }
             Call<RSResponse> callUpload = WebService.getInstance().getApi().AddProduit(
                     parts,
@@ -148,8 +147,8 @@ public class AjoutProduitActivity extends AppCompatActivity {
     }
 
     public void ClickCamera(View view) {
-        if (listPics.size() > 5) {
-            Toast.makeText(this, listPics.size() + " Photos au maximum.", Toast.LENGTH_SHORT).show();
+        if (listPics.size() > Constants.MAX_PHOTO_PRODUITS) {
+            Toast.makeText(this, Constants.MAX_PHOTO_PRODUITS + " Photos au maximum.", Toast.LENGTH_SHORT).show();
         } else {
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
                     ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
@@ -165,7 +164,7 @@ public class AjoutProduitActivity extends AppCompatActivity {
     public void ClickGallery(View view) {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_PERMISSION_STORAGE);
+                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, Constants.REQUEST_PERMISSION_STORAGE);
             }
         } else {
             openGallery();
@@ -175,11 +174,11 @@ public class AjoutProduitActivity extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == REQUEST_PERMISSION_CAMERA) {
+        if (requestCode == Constants.REQUEST_PERMISSION_CAMERA) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
                 openCamera();
             }
-        } else if (requestCode == REQUEST_PERMISSION_STORAGE) {
+        } else if (requestCode == Constants.REQUEST_PERMISSION_STORAGE) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 openGallery();
             }
@@ -189,7 +188,7 @@ public class AjoutProduitActivity extends AppCompatActivity {
     private void openGallery() {
         Intent pickPhoto = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         pickPhoto.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        startActivityForResult(pickPhoto, REQUEST_GALLERY_PHOTO);
+        startActivityForResult(pickPhoto, Constants.REQUEST_GALLERY_PHOTO);
     }
 
     private void openCamera() {
@@ -205,7 +204,7 @@ public class AjoutProduitActivity extends AppCompatActivity {
             mPhotoFile = photoFile;
             Uri photoUri = FileProvider.getUriForFile(this, getApplicationContext().getPackageName() + ".provider", photoFile);
             pictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
-            startActivityForResult(pictureIntent, REQUEST_TAKE_PHOTO);
+            startActivityForResult(pictureIntent, Constants.REQUEST_TAKE_PHOTO);
         }
     }
 
@@ -220,7 +219,7 @@ public class AjoutProduitActivity extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (resultCode == RESULT_OK) {
             Uri imageUri;
-            if (requestCode == REQUEST_TAKE_PHOTO) {
+            if (requestCode == Constants.REQUEST_TAKE_PHOTO) {
                 try {
                     mPhotoFile = mCompressor.compressToFile(mPhotoFile);
                 } catch (IOException e) {
@@ -229,7 +228,7 @@ public class AjoutProduitActivity extends AppCompatActivity {
                 String path = MediaStore.Images.Media.insertImage(getContentResolver(), BitmapFactory.decodeFile(mPhotoFile.getAbsolutePath()), "Image Description", null);
                 imageUri = Uri.parse(path);
                 listPics.add(imageUri);
-            } else if (requestCode == REQUEST_GALLERY_PHOTO) {
+            } else if (requestCode == Constants.REQUEST_GALLERY_PHOTO) {
                 Uri selectedImage = data.getData();
                 try {
                     mPhotoFile = mCompressor.compressToFile(new File(getRealPathFromUri(selectedImage)));

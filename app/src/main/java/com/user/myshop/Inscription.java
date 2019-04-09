@@ -22,6 +22,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.user.myshop.Models.ConfigUrls;
+import com.user.myshop.Utils.Helpers;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -60,7 +61,7 @@ public class Inscription extends AppCompatActivity {
         tel = Tel.getText().toString().trim();
 
         if (Valider()) {
-            if (isOnline()) {
+            if (Helpers.isConnected(this)) {
                 final ProgressDialog loading = ProgressDialog.show(context, "Traitement Des Données...", "S'il Vous Plaît, Attendez...", false, false);
 
                 StringRequest request = new StringRequest(Request.Method.POST, ConfigUrls.ADD_USERS, new Response.Listener<String>() {
@@ -139,11 +140,5 @@ public class Inscription extends AppCompatActivity {
             valide = false;
         }
         return valide;
-    }
-
-    protected boolean isOnline() {
-        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo netInfo = cm.getActiveNetworkInfo();
-        return netInfo != null && netInfo.isConnectedOrConnecting();
     }
 }

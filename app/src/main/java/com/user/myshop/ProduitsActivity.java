@@ -10,16 +10,15 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
-import com.luseen.luseenbottomnavigation.BottomNavigation.BottomNavigationItem;
 import com.luseen.luseenbottomnavigation.BottomNavigation.BottomNavigationView;
-import com.luseen.luseenbottomnavigation.BottomNavigation.OnBottomNavigationItemClickListener;
 import com.user.myshop.Adapter.ProduitsAdapter;
-import com.user.myshop.Models.Produit;
 import com.user.myshop.Models.Produits;
 import com.user.myshop.Models.RSResponse;
+import com.user.myshop.Utils.Helpers;
 import com.user.myshop.Webservice.WebService;
 
 import java.util.ArrayList;
@@ -45,66 +44,52 @@ public class ProduitsActivity extends AppCompatActivity {
         activity = this;
         bottomNavigationView = findViewById(R.id.bottomNavigation);
         grid = findViewById(R.id.grid);
+        Helpers.AddMenu(activity, bottomNavigationView);
         prefs = getApplicationContext().getSharedPreferences("Users", MODE_PRIVATE);
         ID_user = prefs.getInt("ID_User", 0);
         if (ID_user != 0) {
-            Call<RSResponse> callUpload = WebService.getInstance().getApi().loadUserProduit(String.valueOf(1));
-            callUpload.enqueue(new Callback<RSResponse>() {
-                @Override
-                public void onResponse(Call<RSResponse> call, Response<RSResponse> response) {
-                    if (response.body() != null) {
-                        if (response.body().getStatus() == 1) {
-                            Produits[] tab = new Gson().fromJson(new Gson().toJson(response.body().getData()), Produits[].class);
-                            listProduits = Arrays.asList(tab);
-                            Log.d("tt", listProduits.get(0).getListimage().size() + "");
-                            ProduitsAdapter adapter = new ProduitsAdapter(activity, listProduits);
-                            grid.setAdapter(adapter);
-                        } else if (response.body().getStatus() == 2) {
-                            Toast.makeText(ProduitsActivity.this, "Pas de produit", Toast.LENGTH_SHORT).show();
-                        } else if (response.body().getStatus() == 0) {
-                            Toast.makeText(ProduitsActivity.this, "errrr", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<RSResponse> call, Throwable t) {
-                    Log.d("err", t.getMessage());
-                }
-            });
+            GetProduits();
         }
         grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                TextView txtId = view.findViewById(R.id.Id);
+                // Toast.makeText(activity, txtId.getText().toString()+"", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(), ProduitDetails.class);
+                intent.putExtra("ID_Prod", txtId.getText().toString());
                 startActivity(intent);
             }
         });
-        AddMenu();
+    }
+
+    private void GetProduits(){
+        Call<RSResponse> callUpload = WebService.getInstance().getApi().loadUserProduit(String.valueOf(ID_user));
+        callUpload.enqueue(new Callback<RSResponse>() {
+            @Override
+            public void onResponse(Call<RSResponse> call, Response<RSResponse> response) {
+                if (response.body() != null) {
+                    if (response.body().getStatus() == 1) {
+                        Produits[] tab = new Gson().fromJson(new Gson().toJson(response.body().getData()), Produits[].class);
+                        listProduits = Arrays.asList(tab);
+                        ProduitsAdapter adapter = new ProduitsAdapter(activity, listProduits);
+                        grid.setAdapter(adapter);
+                    } else if (response.body().getStatus() == 2) {
+                        Toast.makeText(ProduitsActivity.this, "Pas de produit", Toast.LENGTH_SHORT).show();
+                    } else if (response.body().getStatus() == 0) {
+                        Toast.makeText(ProduitsActivity.this, "errrr", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<RSResponse> call, Throwable t) {
+                Log.d("err", t.getMessage());
+            }
+        });
     }
 
     public void AddProd(View view) {
         startActivity(new Intent(this, AjoutProduitActivity.class));
     }
 
-    private void AddMenu() {
-        BottomNavigationItem bottomNavigationItem = new BottomNavigationItem
-                (getString(R.string.profil), ContextCompat.getColor(this, R.color.colorPrimary), R.drawable.ic_profile);
-        BottomNavigationItem bottomNavigationItem1 = new BottomNavigationItem
-                (getString(R.string.produits), ContextCompat.getColor(this, R.color.colorAccent), R.drawable.ic_allproduit);
-        BottomNavigationItem bottomNavigationItem2 = new BottomNavigationItem
-                (getString(R.string.favori), ContextCompat.getColor(this, R.color.colorAccent), R.drawable.ic_favorite);
-        BottomNavigationItem bottomNavigationItem3 = new BottomNavigationItem
-                (getString(R.string.ajouter_botique), ContextCompat.getColor(this, R.color.colorAccent), R.drawable.ic_addproduit);
-        bottomNavigationView.addTab(bottomNavigationItem);
-        bottomNavigationView.addTab(bottomNavigationItem1);
-        bottomNavigationView.addTab(bottomNavigationItem2);
-        bottomNavigationView.addTab(bottomNavigationItem3);
-        bottomNavigationView.setOnBottomNavigationItemClickListener(new OnBottomNavigationItemClickListener() {
-            @Override
-            public void onNavigationItemClick(int index) {
-                Toast.makeText(getApplicationContext(), "Item " + index + " clicked", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
 }

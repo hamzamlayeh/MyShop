@@ -111,6 +111,14 @@
                 app:srcCompat="@drawable/ic_favorite1"
                 tools:ignore="VectorDrawableCompat" />
 
+            <TextView
+                android:id="@+id/Id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imgProduit" />
+
         </android.support.constraint.ConstraintLayout>
     </android.support.v7.widget.CardView>
 

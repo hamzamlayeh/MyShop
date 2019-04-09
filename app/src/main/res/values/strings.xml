@@ -38,5 +38,10 @@
     <string name="chose_img">Choisir au mois une image</string>
     <string name="add_prod_succ">Votre produit a éte ajouté avec succès</string>
     <string name="dt">DT</string>
+    <string name="ff">Vous n\'êtes pas connectés à Internet</string>
+    <string name="ville">Ville</string>
+    <string name="ajout_boutique">Ajout Boutique</string>
+    <string name="categorie">Categorie</string>
+    <string name="marque">Marque</string>
 
 </resources>

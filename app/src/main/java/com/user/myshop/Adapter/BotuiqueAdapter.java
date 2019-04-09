@@ -7,26 +7,21 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.user.myshop.Models.Boutique;
-
+import com.user.myshop.Models.Boutiques;
 import com.user.myshop.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class BotuiqueAdapter extends BaseAdapter {
 
-    private LayoutInflater layoutInflater;
-     private List<Boutique> list;
+     private List<Boutiques> list;
     private Activity activity;
 
-    public BotuiqueAdapter(Activity  context, ArrayList<Boutique> list) {
+    public BotuiqueAdapter(Activity  context, List<Boutiques> list) {
         super();
         this.activity=context;
         this.list=list;
     }
-
 
     @Override
     public int getCount() {
@@ -47,21 +42,23 @@ public class BotuiqueAdapter extends BaseAdapter {
     @Override
         public View getView(int position, View convertView, ViewGroup parent) {
 //        convertView = layoutInflater.inflate(R.layout.item_porduit, parent,false);
-
-//        RecyclerView.ViewHolder view;
         LayoutInflater inflator = activity.getLayoutInflater();
         if(convertView==null)
         {
-            convertView = inflator.inflate(R.layout.item_botique, null);
+            convertView = inflator.inflate(R.layout.item_boutique, null);
 
+            TextView ID = convertView.findViewById(R.id.Id);
             TextView nomP = convertView.findViewById(R.id.NomProduit);
             TextView marque = convertView.findViewById(R.id.Marque);
             TextView prix = convertView.findViewById(R.id.Prix);
             ImageView imgProduit = convertView.findViewById(R.id.imgProduit);
-
             ImageView fav = convertView.findViewById(R.id.fav);
             final ImageView ClicFav = convertView.findViewById(R.id.ClicFav);
 
+            ID.setText(String.valueOf(list.get(position).getId()));
+            nomP.setText(list.get(position).getNomProd());
+            marque.setText(list.get(position).getMarque());
+            prix.setText(list.get(position).getPrix());
 
             fav.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
@@ -74,21 +71,11 @@ public class BotuiqueAdapter extends BaseAdapter {
                 ClicFav.setVisibility(View.INVISIBLE);
             }
         });
-            nomP.setText(list.get(position).getProduit().getNom());
-            marque.setText(list.get(position).getProduit().getMarque());
-            prix.setText(list.get(position).getProduit().getPrix());
-
-//            prix.setText( list.get(position).getPrix());
-
 //        Picasso.get()
 //                .load(list.get(position).getProduit().getImage())
 //                .resize(400,500)
 //                .into(imgProduit);
-
-
         }
-
-
         return convertView;
     }
 
