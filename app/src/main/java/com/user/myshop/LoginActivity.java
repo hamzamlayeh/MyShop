@@ -1,11 +1,9 @@
 package com.user.myshop;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,26 +11,21 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-import com.user.myshop.Models.ConfigUrls;
+import com.google.gson.Gson;
+import com.user.myshop.Models.RSResponse;
+import com.user.myshop.Models.User;
+import com.user.myshop.Models.UserInfos;
 import com.user.myshop.Utils.Helpers;
+import com.user.myshop.Webservice.WebService;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.HashMap;
-import java.util.Map;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
     EditText Email, Password;
     String mail, password;
-    Context context;
+    Activity activity;
     SharedPreferences pref;
     SharedPreferences.Editor editors;
 
@@ -40,67 +33,54 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        //startActivity(new Intent(this, AddBoutiqueActivity.class));
-        context = this;
+       //startActivity(new Intent(this, ProfileActivity.class));
+        activity = this;
         Email = findViewById(R.id.email);
         Password = findViewById(R.id.password);
-        pref = getApplicationContext().getSharedPreferences("Users", MODE_PRIVATE);
+        pref = getApplicationContext().getSharedPreferences("UserInfos", MODE_PRIVATE);
 
     }
 
     public void inscrire(View view) {
-        startActivity(new Intent(this, Inscription.class));
+        startActivity(new Intent(activity, Inscription.class));
     }
 
     public void Valider(View view) {
         mail = Email.getText().toString().trim();
         password = Password.getText().toString().trim();
         if (Valider()) {
-            if (Helpers.isConnected(this)) {
-                final ProgressDialog loading = ProgressDialog.show(context, "Traitement Des Données...", "S'il Vous Plaît, Attendez...", false, false);
-                StringRequest request = new StringRequest(Request.Method.POST, ConfigUrls.LOGIN, new Response.Listener<String>() {
+            if (Helpers.isConnected(activity)) {
+                final ProgressDialog loading = ProgressDialog.show(activity, "Traitement Des Données...", "S'il Vous Plaît, Attendez...", false, false);
+                User user = new User(mail, password);
+                Call<RSResponse> callUpload = WebService.getInstance().getApi().loginUser(user);
+                callUpload.enqueue(new Callback<RSResponse>() {
                     @Override
-                    public void onResponse(String response) {
+                    public void onResponse(Call<RSResponse> call, Response<RSResponse> response) {
                         loading.dismiss();
-                        switch (response) {
-                            case "0":
-                                Toast.makeText(getApplicationContext(), getString(R.string.EmailOuMotDePasseInvalide), Toast.LENGTH_SHORT).show();
-                                break;
-                            default:
-                                try {
-                                    JSONObject obj = new JSONObject(response);
-                                    editors = pref.edit();
-                                    editors.putString("Email", mail);
-                                    editors.putInt("ID_User", obj.getInt("id_user"));
-                                    editors.apply();
-                                    Toast.makeText(getApplicationContext(), obj.length() + "//" + obj.getInt("id_user"), Toast.LENGTH_SHORT).show();
-                                    startActivity(new Intent(getApplicationContext(), HomeActivity.class));
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
-                                break;
+                        if (response.body() != null) {
+                            if (response.body().getStatus() == 1) {
+                                UserInfos user = new Gson().fromJson(new Gson().toJson(response.body().getData()), UserInfos.class);
+                                editors = pref.edit();
+                                editors.putString("Email", user.getEmail());
+                                editors.putInt("ID_User", user.getId_user());
+                                editors.apply();
+                                startActivity(new Intent(activity, HomeActivity.class));
+                            } else if (response.body().getStatus() == 0) {
+                                Toast.makeText(activity, "err", Toast.LENGTH_SHORT).show();
+                            } else if (response.body().getStatus() == 2) {
+                                Toast.makeText(activity, getString(R.string.EmailOuMotDePasseInvalide), Toast.LENGTH_SHORT).show();
+                            }
                         }
+                    }
 
-                    }
-                }, new Response.ErrorListener() {
                     @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.d("Error.Response", "test");
+                    public void onFailure(Call<RSResponse> call, Throwable t) {
                         loading.dismiss();
+                        Log.i("err", t.getMessage());
                     }
-                }) {
-                    @Override
-                    protected Map<String, String> getParams() throws AuthFailureError {
-                        HashMap<String, String> hmap = new HashMap<String, String>();
-                        hmap.put("email", mail);
-                        hmap.put("password", password);
-                        return hmap;
-                    }
-                };
-                RequestQueue queue = Volley.newRequestQueue(this);
-                queue.add(request);
+                });
             } else {
-                Toast.makeText(this, R.string.chek_internet, Toast.LENGTH_SHORT).show();
+                Helpers.ShowMessageConnection(activity);
             }
         }
     }

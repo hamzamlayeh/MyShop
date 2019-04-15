@@ -1,10 +1,12 @@
 package com.user.myshop;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.GridView;
 import android.widget.Toast;
 import com.google.gson.Gson;
@@ -39,7 +41,7 @@ public class FavoriteActivity extends AppCompatActivity {
         bottomNavigationView = findViewById(R.id.bottomNavigation);
         grid = findViewById(R.id.grid);
         Helpers.AddMenu(activity, bottomNavigationView);
-        prefs = getApplicationContext().getSharedPreferences("Users", MODE_PRIVATE);
+        prefs = getApplicationContext().getSharedPreferences("UserInfos", MODE_PRIVATE);
         ID_user = prefs.getInt("ID_User", 0);
         if (ID_user != 0) {
             GetFavorites();
@@ -74,5 +76,10 @@ public class FavoriteActivity extends AppCompatActivity {
         }else {
             Helpers.ShowMessageConnection(activity);
         }
+    }
+
+    public void Logout(View view) {
+        startActivity(new Intent(this, LoginActivity.class));
+        finishAffinity();
     }
 }

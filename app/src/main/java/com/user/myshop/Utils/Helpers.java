@@ -12,6 +12,7 @@ import com.luseen.luseenbottomnavigation.BottomNavigation.BottomNavigationView;
 import com.luseen.luseenbottomnavigation.BottomNavigation.OnBottomNavigationItemClickListener;
 import com.user.myshop.BoutiqueActivity;
 import com.user.myshop.FavoriteActivity;
+import com.user.myshop.LoginActivity;
 import com.user.myshop.ProduitsActivity;
 import com.user.myshop.ProfileActivity;
 import com.user.myshop.R;

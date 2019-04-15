@@ -1,45 +1,33 @@
 package com.user.myshop;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
-
-import com.android.volley.AuthFailureError;
-import com.android.volley.DefaultRetryPolicy;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.RetryPolicy;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-import com.user.myshop.Models.ConfigUrls;
+import com.user.myshop.Models.RSResponse;
+import com.user.myshop.Models.UserInfos;
 import com.user.myshop.Utils.Helpers;
+import com.user.myshop.Webservice.WebService;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.HashMap;
-import java.util.Map;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class Inscription extends AppCompatActivity {
     EditText Email, Password, Nom, Prenom, Tel, Adress;
     String mail, password, nom, prenom, tel, adress;
-    Context context;
+    Activity activity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inscription);
-        context = this;
+        activity = this;
         Email = findViewById(R.id.email);
         Password = findViewById(R.id.password);
         Nom = findViewById(R.id.nom);
@@ -49,7 +37,7 @@ public class Inscription extends AppCompatActivity {
     }
 
     public void Authentifier(View view) {
-        startActivity(new Intent(this, LoginActivity.class));
+        startActivity(new Intent(activity, LoginActivity.class));
     }
 
     public void Valider(View view) {
@@ -61,50 +49,33 @@ public class Inscription extends AppCompatActivity {
         tel = Tel.getText().toString().trim();
 
         if (Valider()) {
-            if (Helpers.isConnected(this)) {
-                final ProgressDialog loading = ProgressDialog.show(context, "Traitement Des Données...", "S'il Vous Plaît, Attendez...", false, false);
-
-                StringRequest request = new StringRequest(Request.Method.POST, ConfigUrls.ADD_USERS, new Response.Listener<String>() {
+            if (Helpers.isConnected(activity)) {
+                final ProgressDialog loading = ProgressDialog.show(activity, "Traitement Des Données...", "S'il Vous Plaît, Attendez...", false, false);
+                UserInfos userInfos = new UserInfos(nom, prenom, tel, mail, password, adress);
+                Call<RSResponse> callUpload = WebService.getInstance().getApi().inscrireUser(userInfos);
+                callUpload.enqueue(new Callback<RSResponse>() {
                     @Override
-                    public void onResponse(String response) {
-
+                    public void onResponse(Call<RSResponse> call, Response<RSResponse> response) {
                         loading.dismiss();
-                        switch (response) {
-                            case "1":
+                        if (response.body() != null) {
+                            if (response.body().getStatus() == 1) {
+                                startActivity(new Intent(activity, LoginActivity.class));
+                            } else if (response.body().getStatus() == 0) {
+                                Toast.makeText(activity, getString(R.string.insert_eronee), Toast.LENGTH_SHORT).show();
+                            } else if (response.body().getStatus() == 2) {
                                 Email.setError(getString(R.string.MailNexistePas));
-                                //Toast.makeText(getApplicationContext(), getString(R.string.MailNexistePas), Toast.LENGTH_SHORT).show();
-                                break;
-                            case "2":
-                                Toast.makeText(getApplicationContext(), getString(R.string.insert_eronee), Toast.LENGTH_SHORT).show();
-                                break;
-                            default:
-                                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
-                                break;
+                            }
                         }
                     }
-                }, new Response.ErrorListener() {
+
                     @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.d("Error.Response", "test");
+                    public void onFailure(Call<RSResponse> call, Throwable t) {
                         loading.dismiss();
+                        Log.i("err", t.getMessage());
                     }
-                }) {
-                    @Override
-                    protected Map<String, String> getParams() throws AuthFailureError {
-                        HashMap<String, String> hmap = new HashMap<String, String>();
-                        hmap.put("email", mail);
-                        hmap.put("password", password);
-                        hmap.put("nom", nom);
-                        hmap.put("prenom", prenom);
-                        hmap.put("tel", tel);
-                        hmap.put("adress", adress);
-                        return hmap;
-                    }
-                };
-                RequestQueue queue = Volley.newRequestQueue(this);
-                queue.add(request);
+                });
             } else {
-                Toast.makeText(this, R.string.chek_internet, Toast.LENGTH_SHORT).show();
+                Helpers.ShowMessageConnection(activity);
             }
         }
     }

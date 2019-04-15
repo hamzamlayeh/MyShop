@@ -9,6 +9,8 @@ public class Categories implements Serializable {
     private int id_cat;
     @SerializedName("nom")
     private String nomCat;
+    @SerializedName("avec_marque")
+    private int AvecMarque;
 
     public Categories() {
     }
@@ -27,5 +29,13 @@ public class Categories implements Serializable {
 
     public void setNomCat(String nomCat) {
         this.nomCat = nomCat;
+    }
+
+    public int getAvecMarque() {
+        return AvecMarque;
+    }
+
+    public void setAvecMarque(int avecMarque) {
+        AvecMarque = avecMarque;
     }
 }

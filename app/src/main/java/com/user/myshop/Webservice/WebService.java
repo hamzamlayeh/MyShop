@@ -1,5 +1,8 @@
 package com.user.myshop.Webservice;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -11,9 +14,13 @@ public class WebService {
     public WebService() {
 
         OkHttpClient client = new OkHttpClient.Builder().build();
-        Retrofit retrofit = new Retrofit.Builder().client(client)
-                .addConverterFactory(GsonConverterFactory.create())
+        Gson gson = new GsonBuilder()
+                .setLenient()
+                .create();
+        Retrofit retrofit = new Retrofit.Builder()
+                .client(client)
                 .baseUrl(Urls.MAIN_URL)
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
         api = retrofit.create(API.class);
     }

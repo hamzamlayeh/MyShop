@@ -2,7 +2,6 @@ package com.user.myshop.Models;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Produits implements Serializable {
     private int id;

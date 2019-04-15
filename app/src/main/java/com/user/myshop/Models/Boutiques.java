@@ -1,7 +1,7 @@
 package com.user.myshop.Models;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.ArrayList;
 
 public class Boutiques implements Serializable {
 
@@ -15,8 +15,10 @@ public class Boutiques implements Serializable {
     private String prix;
     private String date;
     private String idUser;
+    private String idProd;
     private String ville;
-    private List<String> listimage;
+    private String gouvernement;
+    private ArrayList<String> listimage;
 
     public Boutiques() {
     }
@@ -109,11 +111,27 @@ public class Boutiques implements Serializable {
         this.ville = ville;
     }
 
-    public List<String> getListimage() {
+    public String getGouvernement() {
+        return gouvernement;
+    }
+
+    public void setGouvernement(String gouvernement) {
+        this.gouvernement = gouvernement;
+    }
+
+    public ArrayList<String> getListimage() {
         return listimage;
     }
 
-    public void setListimage(List<String> listimage) {
+    public void setListimage(ArrayList<String> listimage) {
         this.listimage = listimage;
+    }
+
+    public String getIdProd() {
+        return idProd;
+    }
+
+    public void setIdProd(String idProd) {
+        this.idProd = idProd;
     }
 }

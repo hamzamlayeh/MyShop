@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
@@ -21,6 +22,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.luseen.luseenbottomnavigation.BottomNavigation.BottomNavigationItem;
@@ -30,6 +32,7 @@ import com.user.myshop.Models.RSResponse;
 import com.user.myshop.Utils.Constants;
 import com.user.myshop.Utils.FileCompressor;
 import com.user.myshop.Utils.FileUtils;
+import com.user.myshop.Utils.Helpers;
 import com.user.myshop.Webservice.WebService;
 
 import java.io.File;
@@ -56,6 +59,7 @@ public class AjoutProduitActivity extends AppCompatActivity {
     private File mPhotoFile;
     private List<Uri> listPics = new ArrayList<>();
     BottomNavigationView bottomNavigationView;
+    TextView Taille;
     EditText NomProd, Description, Prix;
     String nomProd, description, prix;
     SharedPreferences prefs;
@@ -65,16 +69,17 @@ public class AjoutProduitActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ajout_produit);
-
-        prefs = getApplicationContext().getSharedPreferences("Users", MODE_PRIVATE);
+        prefs = getApplicationContext().getSharedPreferences("UserInfos", MODE_PRIVATE);
         mCompressor = new FileCompressor(this);
         bottomNavigationView = findViewById(R.id.bottomNavigation);
         NomProd = findViewById(R.id.NomProduit);
         Description = findViewById(R.id.Desc);
         Prix = findViewById(R.id.Prix);
-        AddMenu();
+        Taille = findViewById(R.id.taileImg);
+        Helpers.AddMenu(this, bottomNavigationView);
+        Taille.setText("0");
         ID_user = prefs.getInt("ID_User", 0);
-        Toast.makeText(this, ID_user + "", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, ID_user + "", Toast.LENGTH_SHORT).show();
 
     }
 
@@ -141,6 +146,7 @@ public class AjoutProduitActivity extends AppCompatActivity {
         }
         if (listPics.size() <= 0) {
             Toast.makeText(this, getString(R.string.chose_img), Toast.LENGTH_SHORT).show();
+            Taille.setTextColor(Color.RED);
             valide = false;
         }
         return valide;
@@ -148,6 +154,7 @@ public class AjoutProduitActivity extends AppCompatActivity {
 
     public void ClickCamera(View view) {
         if (listPics.size() > Constants.MAX_PHOTO_PRODUITS) {
+            Taille.setTextColor(Color.RED);
             Toast.makeText(this, Constants.MAX_PHOTO_PRODUITS + " Photos au maximum.", Toast.LENGTH_SHORT).show();
         } else {
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
@@ -162,12 +169,17 @@ public class AjoutProduitActivity extends AppCompatActivity {
     }
 
     public void ClickGallery(View view) {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, Constants.REQUEST_PERMISSION_STORAGE);
-            }
+        if (listPics.size() > Constants.MAX_PHOTO_PRODUITS) {
+            Taille.setTextColor(Color.RED);
+            Toast.makeText(this, Constants.MAX_PHOTO_PRODUITS + " Photos au maximum.", Toast.LENGTH_SHORT).show();
         } else {
-            openGallery();
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, Constants.REQUEST_PERMISSION_STORAGE);
+                }
+            } else {
+                openGallery();
+            }
         }
     }
 
@@ -228,6 +240,8 @@ public class AjoutProduitActivity extends AppCompatActivity {
                 String path = MediaStore.Images.Media.insertImage(getContentResolver(), BitmapFactory.decodeFile(mPhotoFile.getAbsolutePath()), "Image Description", null);
                 imageUri = Uri.parse(path);
                 listPics.add(imageUri);
+                Taille.setText(String.valueOf(listPics.size()));
+                Taille.setTextColor(Color.BLACK);
             } else if (requestCode == Constants.REQUEST_GALLERY_PHOTO) {
                 Uri selectedImage = data.getData();
                 try {
@@ -238,6 +252,8 @@ public class AjoutProduitActivity extends AppCompatActivity {
                 String path = MediaStore.Images.Media.insertImage(getContentResolver(), BitmapFactory.decodeFile(mPhotoFile.getAbsolutePath()), "Image Description", null);
                 imageUri = Uri.parse(path);
                 listPics.add(imageUri);
+                Taille.setText(String.valueOf(listPics.size()));
+                Taille.setTextColor(Color.BLACK);
             }
         }
     }
@@ -268,37 +284,8 @@ public class AjoutProduitActivity extends AppCompatActivity {
         return RequestBody.create(MultipartBody.FORM, value);
     }
 
-    private void AddMenu() {
-        BottomNavigationItem bottomNavigationItem = new BottomNavigationItem
-                (getString(R.string.profil), ContextCompat.getColor(this, R.color.colorPrimary), R.drawable.ic_profile);
-        BottomNavigationItem bottomNavigationItem1 = new BottomNavigationItem
-                (getString(R.string.produits), ContextCompat.getColor(this, R.color.colorAccent), R.drawable.ic_allproduit);
-        BottomNavigationItem bottomNavigationItem2 = new BottomNavigationItem
-                (getString(R.string.favori), ContextCompat.getColor(this, R.color.colorAccent), R.drawable.ic_favorite);
-        BottomNavigationItem bottomNavigationItem3 = new BottomNavigationItem
-                (getString(R.string.ajouter_botique), ContextCompat.getColor(this, R.color.colorAccent), R.drawable.ic_addproduit);
-        bottomNavigationView.addTab(bottomNavigationItem);
-        bottomNavigationView.addTab(bottomNavigationItem1);
-        bottomNavigationView.addTab(bottomNavigationItem2);
-        bottomNavigationView.addTab(bottomNavigationItem3);
-        bottomNavigationView.setOnBottomNavigationItemClickListener(new OnBottomNavigationItemClickListener() {
-            @Override
-            public void onNavigationItemClick(int index) {
-                switch (index) {
-                    case 0:
-                        startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
-                        break;
-                    case 1:
-                        startActivity(new Intent(getApplicationContext(), ProduitsActivity.class));
-                        break;
-                    case 2:
-                        startActivity(new Intent(getApplicationContext(), FavoriteActivity.class));
-                        break;
-                    case 3:
-                        startActivity(new Intent(getApplicationContext(), BoutiqueActivity.class));
-                        break;
-                }
-            }
-        });
+    public void Logout(View view) {
+        startActivity(new Intent(this, LoginActivity.class));
+        finishAffinity();
     }
 }

@@ -9,6 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.user.myshop.Models.Produits;
 import com.user.myshop.R;
 
@@ -53,17 +54,14 @@ public class ProduitsAdapter extends BaseAdapter {
             TextView nomP = convertView.findViewById(R.id.NomProduit);
             TextView date = convertView.findViewById(R.id.date);
             TextView prix = convertView.findViewById(R.id.Prix);
-            // imgProduit = convertView.findViewById(R.id.imgProduit);
+            SimpleDraweeView imgProduit = convertView.findViewById(R.id.imgProduit);
 
             Id.setText(String.valueOf(list.get(position).getId()));
             nomP.setText(list.get(position).getNom());
             date.setText(list.get(position).getDate());
             prix.setText(list.get(position).getPrix());
-
-//        Picasso.get()
-//                .load(list.get(position).getImage())
-//                .resize(400,500)
-//                .into(imgProduit);
+            if (list.get(position).getListimage().size()!=0)
+                imgProduit.setImageURI(list.get(position).getListimage().get(0));
 
         }
         return convertView;

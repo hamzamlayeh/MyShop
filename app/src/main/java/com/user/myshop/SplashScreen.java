@@ -8,14 +8,18 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
+import com.user.myshop.Utils.Constants;
+
 public class SplashScreen extends AppCompatActivity {
-    public static int SPLASH_TIME_OUT = 4000;
+
     ImageView logo;
     Animation animFadeIn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fresco.initialize(this);
         setContentView(R.layout.activity_splash);
         logo = findViewById(R.id.logo);
         animFadeIn = AnimationUtils.loadAnimation(this, R.anim.translate);
@@ -27,6 +31,6 @@ public class SplashScreen extends AppCompatActivity {
                 startActivity(i);
                 finish();
             }
-        }, SPLASH_TIME_OUT);
+        }, Constants.SPLASH_TIME_OUT);
     }
 }

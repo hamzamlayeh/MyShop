@@ -41,7 +41,10 @@ public class BoutiqueActivity extends AppCompatActivity {
         bottomNavigationView = findViewById(R.id.bottomNavigation);
         grid = findViewById(R.id.grid);
         Helpers.AddMenu(activity, bottomNavigationView);
-        GetAllBoutique();
+        if (Helpers.isConnected(activity))
+            GetAllBoutique();
+        else
+            Helpers.ShowMessageConnection(activity);
 
         grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -77,5 +80,10 @@ public class BoutiqueActivity extends AppCompatActivity {
                 Log.d("err", t.getMessage());
             }
         });
+    }
+
+    public void Logout(View view) {
+        startActivity(new Intent(activity, LoginActivity.class));
+        finishAffinity();
     }
 }

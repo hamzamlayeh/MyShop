@@ -45,7 +45,7 @@ public class ProduitsActivity extends AppCompatActivity {
         bottomNavigationView = findViewById(R.id.bottomNavigation);
         grid = findViewById(R.id.grid);
         Helpers.AddMenu(activity, bottomNavigationView);
-        prefs = getApplicationContext().getSharedPreferences("Users", MODE_PRIVATE);
+        prefs = getApplicationContext().getSharedPreferences("UserInfos", MODE_PRIVATE);
         ID_user = prefs.getInt("ID_User", 0);
         if (ID_user != 0) {
             GetProduits();
@@ -92,4 +92,8 @@ public class ProduitsActivity extends AppCompatActivity {
         startActivity(new Intent(this, AjoutProduitActivity.class));
     }
 
+    public void Logout(View view) {
+        startActivity(new Intent(this,LoginActivity.class));
+        finishAffinity();
+    }
 }

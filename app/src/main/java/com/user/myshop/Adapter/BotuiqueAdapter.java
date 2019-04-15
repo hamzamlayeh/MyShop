@@ -1,26 +1,39 @@
 package com.user.myshop.Adapter;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.facebook.drawee.view.SimpleDraweeView;
+import com.user.myshop.BoutiqueActivity;
 import com.user.myshop.Models.Boutiques;
+import com.user.myshop.Models.RSResponse;
 import com.user.myshop.R;
+import com.user.myshop.Utils.Helpers;
+import com.user.myshop.Webservice.WebService;
 
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class BotuiqueAdapter extends BaseAdapter {
 
-     private List<Boutiques> list;
+    private List<Boutiques> list;
     private Activity activity;
 
-    public BotuiqueAdapter(Activity  context, List<Boutiques> list) {
+    public BotuiqueAdapter(Activity context, List<Boutiques> list) {
         super();
-        this.activity=context;
-        this.list=list;
+        this.activity = context;
+        this.list = list;
     }
 
     @Override
@@ -30,7 +43,7 @@ public class BotuiqueAdapter extends BaseAdapter {
 
     @Override
     public Object getItem(int position) {
-        return  list.get(position);
+        return list.get(position);
     }
 
     @Override
@@ -38,45 +51,99 @@ public class BotuiqueAdapter extends BaseAdapter {
         return 0;
     }
 
-    boolean isFavo=false;
+    boolean isFavo = false;
+
     @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
 //        convertView = layoutInflater.inflate(R.layout.item_porduit, parent,false);
         LayoutInflater inflator = activity.getLayoutInflater();
-        if(convertView==null)
-        {
+        if (convertView == null) {
             convertView = inflator.inflate(R.layout.item_boutique, null);
 
             TextView ID = convertView.findViewById(R.id.Id);
             TextView nomP = convertView.findViewById(R.id.NomProduit);
-            TextView marque = convertView.findViewById(R.id.Marque);
+            TextView categorie = convertView.findViewById(R.id.categorie);
             TextView prix = convertView.findViewById(R.id.Prix);
-            ImageView imgProduit = convertView.findViewById(R.id.imgProduit);
-            ImageView fav = convertView.findViewById(R.id.fav);
-            final ImageView ClicFav = convertView.findViewById(R.id.ClicFav);
+            SimpleDraweeView imgProduit = convertView.findViewById(R.id.imgProduit);
+            final ImageView followed = convertView.findViewById(R.id.followed);
+            final ImageView unfollowed = convertView.findViewById(R.id.unfollowed);
 
             ID.setText(String.valueOf(list.get(position).getId()));
             nomP.setText(list.get(position).getNomProd());
-            marque.setText(list.get(position).getMarque());
+            categorie.setText(list.get(position).getCategorie());
             prix.setText(list.get(position).getPrix());
 
-            fav.setOnClickListener(new View.OnClickListener() {
+            if (list.get(position).getListimage().size() != 0)
+                imgProduit.setImageURI(list.get(position).getListimage().get(0));
+
+            followed.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    ClicFav.setVisibility(View.VISIBLE);
+                    if (Helpers.isConnected(activity)) {
+                        followed.setVisibility(View.GONE);
+                        unfollowed.setVisibility(View.VISIBLE);
+                        followed(list.get(position).getIdUser(), list.get(position).getId());
+                    } else {
+                        Helpers.ShowMessageConnection(activity);
+                    }
+
                 }
             });
 
-            ClicFav.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                ClicFav.setVisibility(View.INVISIBLE);
-            }
-        });
-//        Picasso.get()
-//                .load(list.get(position).getProduit().getImage())
-//                .resize(400,500)
-//                .into(imgProduit);
+            unfollowed.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    if (Helpers.isConnected(activity)) {
+                        unfollowed.setVisibility(View.VISIBLE);
+                        followed.setVisibility(View.GONE);
+                        unfollowed(list.get(position).getId());
+                    } else {
+                        Helpers.ShowMessageConnection(activity);
+                    }
+                }
+            });
         }
         return convertView;
+    }
+
+    private void followed(String idUser, int id_bout) {
+        Call<RSResponse> callUpload = WebService.getInstance().getApi().AddFavorite(String.valueOf(id_bout), idUser);
+        callUpload.enqueue(new Callback<RSResponse>() {
+            @Override
+            public void onResponse(Call<RSResponse> call, Response<RSResponse> response) {
+                if (response.body().getStatus() == 1) {
+                    Toast.makeText(activity, activity.getString(R.string.suivi), Toast.LENGTH_SHORT).show();
+                } else if (response.body().getStatus() == 0) {
+                    Toast.makeText(activity, "rrr", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<RSResponse> call, Throwable t) {
+                Log.d("err", t.getMessage());
+            }
+        });
+    }
+
+    private void unfollowed(int id_bout) {
+        if (Helpers.isConnected(activity)) {
+            Call<RSResponse> callUpload = WebService.getInstance().getApi().DeleteFavorite(String.valueOf(id_bout));
+            callUpload.enqueue(new Callback<RSResponse>() {
+                @Override
+                public void onResponse(Call<RSResponse> call, Response<RSResponse> response) {
+                    if (response.body().getStatus() == 1) {
+                        Toast.makeText(activity, activity.getString(R.string.no_suvi), Toast.LENGTH_SHORT).show();
+                    } else if (response.body().getStatus() == 0) {
+                        Toast.makeText(activity, "rrr", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<RSResponse> call, Throwable t) {
+                    Log.d("err", t.getMessage());
+                }
+            });
+        } else {
+            Helpers.ShowMessageConnection(activity);
+        }
     }
 
 

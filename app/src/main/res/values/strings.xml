@@ -43,5 +43,26 @@
     <string name="ajout_boutique">Ajout Boutique</string>
     <string name="categorie">Categorie</string>
     <string name="marque">Marque</string>
+    <string name="contacter_par">Contacter:</string>
+    <string name="chektype_contact">Choisir une type de contact</string>
+    <string name="oui">Oui</string>
+    <string name="non">Non</string>
+    <string name="supp_prod">Supprimer Produit</string>
+    <string name="question_supp_prod">Vous été sûr de supprimer cette produit ?</string>
+    <string name="question_supp_bout">Vous été sûr de supprimer cette produit du boutique ?</string>
+    <string name="annonce">Annonce</string>
+    <string name="gouvernement">Gouvernement</string>
+    <string name="modifier_profile">Modifier Profile</string>
+    <string name="deconnecter">Deconnecter</string>
+    <string name="modifier">Modifier</string>
+    <string name="voir_photo">Voir Photo</string>
+    <string name="anuller">Annuler</string>
+    <string name="_5">/5</string>
+    <string name="produit_existe">Le Produit existe dans le boutique</string>
+    <string name="contacter_vendeur">Contacter Vendeur</string>
+    <string name="produit_supp">le produit a été supprimé</string>
+    <string name="consulter_photo">consulter photo</string>
+    <string name="suivi">Suivi</string>
+    <string name="no_suvi">Non suivi</string>
 
 </resources>

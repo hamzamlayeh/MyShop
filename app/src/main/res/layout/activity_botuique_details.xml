@@ -25,13 +25,25 @@
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
             app:layout_constraintVertical_bias="0.0">
 
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="40dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="17dp"
+                android:onClick="SupprimerItemBoutique"
+                android:padding="2dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView"
+                app:srcCompat="@drawable/ic_suppprod"
+                tools:ignore="VectorDrawableCompat" />
+
             <TextView
                 android:id="@+id/Prix"
                 android:layout_width="wrap_content"
                 android:layout_height="32dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:text="350"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
@@ -50,12 +62,11 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/Titre"
+                android:id="@+id/nom"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
-                android:text="PC Portable LENOVO Dans Sa Boîte"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/Prix" />
@@ -66,9 +77,8 @@
                 android:layout_height="19dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="12dp"
-                android:text="il y a 2 mois"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Titre" />
+                app:layout_constraintTop_toBottomOf="@+id/nom" />
 
             <View
                 android:id="@+id/view8"
@@ -93,12 +103,11 @@
                 tools:ignore="VectorDrawableCompat" />
 
             <TextView
-                android:id="@+id/textView11"
+                android:id="@+id/location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:text="Tunis, Le Bardo"
                 android:textSize="18sp"
                 app:layout_constraintStart_toEndOf="@+id/imageView3"
                 app:layout_constraintTop_toBottomOf="@+id/view8" />
@@ -120,10 +129,32 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="12dp"
-                android:text="Ordinateurs portables"
+                android:textSize="18sp"
+                android:visibility="gone"
+                app:layout_constraintStart_toEndOf="@+id/imageView40"
+                app:layout_constraintTop_toBottomOf="@+id/categorie" />
+
+            <ImageView
+                android:id="@+id/imageView40"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="8dp"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView4"
+                app:srcCompat="@drawable/ic_tag"
+                tools:ignore="VectorDrawableCompat" />
+
+            <TextView
+                android:id="@+id/categorie"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
                 android:textSize="18sp"
                 app:layout_constraintStart_toEndOf="@+id/imageView4"
-                app:layout_constraintTop_toBottomOf="@+id/textView11" />
+                app:layout_constraintTop_toBottomOf="@+id/location" />
 
             <View
                 android:id="@+id/view9"
@@ -140,7 +171,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:text="Description"
+                android:text="@string/description"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
@@ -153,7 +184,6 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="32dp"
-                android:text="- Ecran 15.6&quot; LED HD (1366 x 768 px)  - Processeur: Intel Core i3-6020U (2.30 GHz , 3Mo de mémoire Cache),  - Systéme d'exploitation: Windows 10 Home"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -167,7 +197,8 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="32dp"
                 android:background="@drawable/style_btn"
-                android:text="Contacter Vendeur"
+                android:onClick="Contacter"
+                android:text="@string/contacter_vendeur"
                 android:textColor="@android:color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -182,7 +213,7 @@
                 android:layout_marginTop="36dp"
                 android:layout_marginEnd="32dp"
                 android:background="@drawable/style_btn"
-                android:text="consulter photo"
+                android:text="@string/consulter_photo"
                 android:textColor="@android:color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -207,13 +238,28 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            android:text="Annonce"
+            android:text="@string/annonce"
             android:textColor="@android:color/background_light"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView7"
+            android:layout_width="45dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp"
+            android:onClick="Logout"
+            android:padding="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_logout"
+            tools:ignore="VectorDrawableCompat" />
     </android.support.constraint.ConstraintLayout>
 
     <com.luseen.luseenbottomnavigation.BottomNavigation.BottomNavigationView

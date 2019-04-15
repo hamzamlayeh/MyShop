@@ -1,7 +1,9 @@
 package com.user.myshop.Models;
 
-public class Users {
-    private int idUser;
+import java.io.Serializable;
+
+public class UserInfos implements Serializable {
+    private int id_user;
     private String nom;
     private String prenom;
     private String tel;
@@ -9,29 +11,29 @@ public class Users {
     private String password;
     private String adress;
     private String etat;
-    private String imageProfile;
+    private String image_profile;
+    private int NB_Prod;
+    private int NB_fav;
 
-    public Users() {
+    public UserInfos() {
     }
 
-    public Users(int idUser, String nom, String prenom, String tel, String email, String password, String adress, String etat, String imageProfile) {
-        this.idUser = idUser;
+    public UserInfos(String nom, String prenom, String tel, String email, String password, String adress) {
         this.nom = nom;
         this.prenom = prenom;
         this.tel = tel;
         this.email = email;
         this.password = password;
         this.adress = adress;
-        this.etat = etat;
-        this.imageProfile = imageProfile;
+        this.etat = "0";
     }
 
-    public int getIdUser() {
-        return idUser;
+    public int getId_user() {
+        return id_user;
     }
 
-    public void setIdUser(int idUser) {
-        this.idUser = idUser;
+    public void setId_user(int id_user) {
+        this.id_user = id_user;
     }
 
     public String getNom() {
@@ -90,11 +92,27 @@ public class Users {
         this.etat = etat;
     }
 
-    public String getImageProfile() {
-        return imageProfile;
+    public String getImage_profile() {
+        return image_profile;
     }
 
-    public void setImageProfile(String imageProfile) {
-        this.imageProfile = imageProfile;
+    public void setImage_profile(String image_profile) {
+        this.image_profile = image_profile;
+    }
+
+    public int getNB_Prod() {
+        return NB_Prod;
+    }
+
+    public void setNB_Prod(int NB_Prod) {
+        this.NB_Prod = NB_Prod;
+    }
+
+    public int getNB_fav() {
+        return NB_fav;
+    }
+
+    public void setNB_fav(int NB_fav) {
+        this.NB_fav = NB_fav;
     }
 }

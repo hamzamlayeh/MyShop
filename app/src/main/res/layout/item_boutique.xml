@@ -28,10 +28,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <ImageView
+            <com.facebook.drawee.view.SimpleDraweeView
                 android:id="@+id/imgProduit"
                 android:layout_width="0dp"
-                android:layout_height="168dp"
+                android:layout_height="140dp"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="8dp"
@@ -41,8 +41,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0"
-                app:srcCompat="@drawable/test" />
+                app:layout_constraintVertical_bias="0.0" />
 
             <TextView
                 android:id="@+id/NomProduit"
@@ -50,19 +49,17 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
-                android:text="Nom Produit"
                 android:textColor="@android:color/background_dark"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imgProduit" />
 
             <TextView
-                android:id="@+id/Marque"
+                android:id="@+id/categorie"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="4dp"
-                android:text="Marque"
                 android:textColor="@android:color/background_dark"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/NomProduit" />
@@ -73,7 +70,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="232dp"
-                android:text="TextView"
                 android:textColor="@android:color/background_dark"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/imgProduit" />
@@ -90,7 +86,7 @@
                 app:layout_constraintTop_toTopOf="@+id/imgProduit" />
 
             <ImageView
-                android:id="@+id/fav"
+                android:id="@+id/followed"
                 android:layout_width="32dp"
                 android:layout_height="45dp"
                 android:layout_marginTop="32dp"
@@ -100,7 +96,7 @@
                 app:srcCompat="@drawable/like" />
 
             <ImageView
-                android:id="@+id/ClicFav"
+                android:id="@+id/unfollowed"
                 android:layout_width="32dp"
                 android:layout_height="45dp"
                 android:layout_marginTop="32dp"

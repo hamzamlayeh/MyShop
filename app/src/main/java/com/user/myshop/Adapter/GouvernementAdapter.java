@@ -8,16 +8,16 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.user.myshop.Models.Categories;
+import com.user.myshop.Models.Gouvernements;
 import com.user.myshop.R;
 
 import java.util.List;
 
-public class CategorieAdapter extends BaseAdapter {
-    private List<Categories> list;
+public class GouvernementAdapter extends BaseAdapter {
+    private List<Gouvernements> list;
     private Activity activity;
 
-    public CategorieAdapter(Activity activity, List<Categories> list) {
+    public GouvernementAdapter(Activity activity, List<Gouvernements> list) {
         this.list = list;
         this.activity = activity;
     }
@@ -40,14 +40,12 @@ public class CategorieAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = inflater.inflate(R.layout.item_categorie, null);
+        View view = inflater.inflate(R.layout.item_gouvernerat, null);
         TextView id = view.findViewById(R.id.id);
-        TextView nomC = view.findViewById(R.id.nomC);
-        TextView indiceMarque = view.findViewById(R.id.indice);
+        TextView nomG = view.findViewById(R.id.nomG);
 
-        id.setText(String.valueOf(list.get(position).getId_cat()));
-        nomC.setText(list.get(position).getNomCat());
-        indiceMarque.setText(String.valueOf(list.get(position).getAvecMarque()));
+        id.setText(String.valueOf(list.get(position).getId()));
+        nomG.setText(list.get(position).getNom());
 
         return view;
     }
