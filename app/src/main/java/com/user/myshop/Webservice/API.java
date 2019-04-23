@@ -112,6 +112,13 @@ public interface API {
             @Field("id_user") String id_user
     );
 
+    @FormUrlEncoded
+    @POST("isFavore.php")
+    Call<RSResponse> isFavoree(
+            @Field("id_bout") String id_bout,
+            @Field("id_user") String id_user
+    );
+
     @DELETE("DeleteFavorie.php")
     Call<RSResponse> DeleteFavorite(@Query("id_bout") String id_bout);
 

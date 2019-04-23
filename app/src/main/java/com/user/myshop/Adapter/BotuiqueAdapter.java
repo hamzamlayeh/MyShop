@@ -29,6 +29,7 @@ public class BotuiqueAdapter extends BaseAdapter {
 
     private List<Boutiques> list;
     private Activity activity;
+    private boolean isfavore = false;
 
     public BotuiqueAdapter(Activity context, List<Boutiques> list) {
         super();
@@ -75,6 +76,16 @@ public class BotuiqueAdapter extends BaseAdapter {
 
             if (list.get(position).getListimage().size() != 0)
                 imgProduit.setImageURI(list.get(position).getListimage().get(0));
+            //verifier produit favore
+            ISfavore(list.get(position).getIdUser(), list.get(position).getId());
+
+            if (isfavore) {
+                unfollowed.setVisibility(View.VISIBLE);
+                followed.setVisibility(View.GONE);
+            }else {
+                followed.setVisibility(View.VISIBLE);
+                unfollowed.setVisibility(View.GONE);
+            }
 
             followed.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
@@ -102,6 +113,28 @@ public class BotuiqueAdapter extends BaseAdapter {
             });
         }
         return convertView;
+    }
+
+    private void ISfavore(String idUser, int id_bout) {
+
+        Call<RSResponse> callUpload = WebService.getInstance().getApi().isFavoree(String.valueOf(id_bout), idUser);
+        callUpload.enqueue(new Callback<RSResponse>() {
+            @Override
+            public void onResponse(Call<RSResponse> call, Response<RSResponse> response) {
+                if (response.body().getStatus() == 1) {
+                    isfavore = true;
+                } else if (response.body().getStatus() == 2) {
+                    isfavore = false;
+                } else if (response.body().getStatus() == 0) {
+                    Toast.makeText(activity, "rrr", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<RSResponse> call, Throwable t) {
+                Log.d("err", t.getMessage());
+            }
+        });
     }
 
     private void followed(String idUser, int id_bout) {
