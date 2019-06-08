@@ -1,53 +1,56 @@
 package com.user.myshop.Adapter;
 
 import android.app.Activity;
+import android.support.annotation.NonNull;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.user.myshop.R;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class ImageProduitAdapter extends BaseAdapter {
+public class ImageProduitAdapter extends RecyclerView.Adapter<ImageProduitAdapter.ViewHolder> {
 
     private ArrayList<String> list;
     private Activity activity;
+
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+
+        SimpleDraweeView imgProduit;
+
+        public ViewHolder(View itemView) {
+            super(itemView);
+
+            imgProduit = itemView.findViewById(R.id.image);
+
+        }
+    }
 
     public ImageProduitAdapter(ArrayList<String> list, Activity activity) {
         this.list = list;
         this.activity = activity;
     }
 
+    @NonNull
     @Override
-    public int getCount() {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        View view = LayoutInflater.from(activity).inflate(R.layout.item_image, viewGroup, false);
+
+        return new ViewHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull ViewHolder holder, int i) {
+
+        if (list.size() != 0)
+            holder.imgProduit.setImageURI(list.get(i));
+    }
+
+    @Override
+    public int getItemCount() {
         return list.size();
-    }
-
-    @Override
-    public Object getItem(int position) {
-        return list.get(position);
-    }
-
-    @Override
-    public long getItemId(int position) {
-        return 0;
-    }
-
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        LayoutInflater inflator = activity.getLayoutInflater();
-        if (convertView == null) {
-            convertView = inflator.inflate(R.layout.item_image, null);
-
-            SimpleDraweeView imgProduit = convertView.findViewById(R.id.image);
-            if (list.size()!=0)
-                imgProduit.setImageURI(list.get(position));
-
-        }
-        return convertView;
     }
 }

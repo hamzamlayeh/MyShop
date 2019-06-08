@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.GridView;
@@ -30,7 +32,7 @@ public class ProduitDetails extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     TextView NomProd, Prix, Description, Date;
     SimpleDraweeView Img_Prod;
-    GridView grid;
+    RecyclerView recyclerView;
     String ID_Prod;
     Produits Produit;
     Activity activity;
@@ -46,7 +48,7 @@ public class ProduitDetails extends AppCompatActivity {
         Description = findViewById(R.id.Description);
         Date = findViewById(R.id.Date);
         Img_Prod = findViewById(R.id.imageprod);
-        grid = findViewById(R.id.grid_Prod);
+        recyclerView = findViewById(R.id.grid_Prod);
 
         Helpers.AddMenu(activity, bottomNavigationView);
         Bundle extras = getIntent().getExtras();
@@ -96,9 +98,12 @@ public class ProduitDetails extends AppCompatActivity {
 
     public void LoadPhoto(View view) {
         Log.i("size", Produit.getListimage().size() + "");
+        recyclerView.setVisibility(View.VISIBLE);
         if (Produit != null) {
             ImageProduitAdapter imageProduitAdapter = new ImageProduitAdapter(Produit.getListimage(), activity);
-            grid.setAdapter(imageProduitAdapter);
+            recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext(),
+                    LinearLayoutManager.HORIZONTAL, false));
+            recyclerView.setAdapter(imageProduitAdapter);
         }
     }
 

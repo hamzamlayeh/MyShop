@@ -55,6 +55,7 @@ public class FavoriteActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<RSResponse> call, Response<RSResponse> response) {
                     if (response.body() != null) {
+                        Toast.makeText(activity, "tt", Toast.LENGTH_SHORT).show();
                         if (response.body().getStatus() == 1) {
                             Favorites[] tab = new Gson().fromJson(new Gson().toJson(response.body().getData()), Favorites[].class);
                             listFavorite = Arrays.asList(tab);
@@ -71,6 +72,7 @@ public class FavoriteActivity extends AppCompatActivity {
                 @Override
                 public void onFailure(Call<RSResponse> call, Throwable t) {
                     Log.d("err", t.getMessage());
+                    Toast.makeText(activity, "tt", Toast.LENGTH_SHORT).show();
                 }
             });
         }else {

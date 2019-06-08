@@ -52,7 +52,7 @@ public class BotuiqueAdapter extends BaseAdapter {
         return 0;
     }
 
-    boolean isFavo = false;
+    private ImageView unfollowed, followed;
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
@@ -66,8 +66,8 @@ public class BotuiqueAdapter extends BaseAdapter {
             TextView categorie = convertView.findViewById(R.id.categorie);
             TextView prix = convertView.findViewById(R.id.Prix);
             SimpleDraweeView imgProduit = convertView.findViewById(R.id.imgProduit);
-            final ImageView followed = convertView.findViewById(R.id.followed);
-            final ImageView unfollowed = convertView.findViewById(R.id.unfollowed);
+            followed = convertView.findViewById(R.id.followed);
+            unfollowed = convertView.findViewById(R.id.unfollowed);
 
             ID.setText(String.valueOf(list.get(position).getId()));
             nomP.setText(list.get(position).getNomProd());
@@ -77,22 +77,15 @@ public class BotuiqueAdapter extends BaseAdapter {
             if (list.get(position).getListimage().size() != 0)
                 imgProduit.setImageURI(list.get(position).getListimage().get(0));
             //verifier produit favore
-            ISfavore(list.get(position).getIdUser(), list.get(position).getId());
+            //ISfavore(list.get(position).getIdUser(), list.get(position).getId());
 
-            if (isfavore) {
-                unfollowed.setVisibility(View.VISIBLE);
-                followed.setVisibility(View.GONE);
-            }else {
-                followed.setVisibility(View.VISIBLE);
-                unfollowed.setVisibility(View.GONE);
-            }
 
             followed.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     if (Helpers.isConnected(activity)) {
+                        //followed(list.get(position).getIdUser(), list.get(position).getId());
                         followed.setVisibility(View.GONE);
                         unfollowed.setVisibility(View.VISIBLE);
-                        followed(list.get(position).getIdUser(), list.get(position).getId());
                     } else {
                         Helpers.ShowMessageConnection(activity);
                     }
@@ -103,9 +96,9 @@ public class BotuiqueAdapter extends BaseAdapter {
             unfollowed.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     if (Helpers.isConnected(activity)) {
+                        //unfollowed(list.get(position).getId());
                         unfollowed.setVisibility(View.VISIBLE);
                         followed.setVisibility(View.GONE);
-                        unfollowed(list.get(position).getId());
                     } else {
                         Helpers.ShowMessageConnection(activity);
                     }
@@ -123,8 +116,12 @@ public class BotuiqueAdapter extends BaseAdapter {
             public void onResponse(Call<RSResponse> call, Response<RSResponse> response) {
                 if (response.body().getStatus() == 1) {
                     isfavore = true;
+                    unfollowed.setVisibility(View.VISIBLE);
+                    followed.setVisibility(View.GONE);
                 } else if (response.body().getStatus() == 2) {
                     isfavore = false;
+                    followed.setVisibility(View.VISIBLE);
+                    unfollowed.setVisibility(View.GONE);
                 } else if (response.body().getStatus() == 0) {
                     Toast.makeText(activity, "rrr", Toast.LENGTH_SHORT).show();
                 }
@@ -143,6 +140,9 @@ public class BotuiqueAdapter extends BaseAdapter {
             @Override
             public void onResponse(Call<RSResponse> call, Response<RSResponse> response) {
                 if (response.body().getStatus() == 1) {
+                    // unfollowed.setVisibility(View.GONE);
+                    Log.i("ff", "flo");
+                    //followed.setVisibility(View.VISIBLE);
                     Toast.makeText(activity, activity.getString(R.string.suivi), Toast.LENGTH_SHORT).show();
                 } else if (response.body().getStatus() == 0) {
                     Toast.makeText(activity, "rrr", Toast.LENGTH_SHORT).show();
@@ -163,6 +163,9 @@ public class BotuiqueAdapter extends BaseAdapter {
                 @Override
                 public void onResponse(Call<RSResponse> call, Response<RSResponse> response) {
                     if (response.body().getStatus() == 1) {
+                        //unfollowed.setVisibility(View.VISIBLE);
+                        Log.i("ff", "inflo");
+                        //followed.setVisibility(View.GONE);
                         Toast.makeText(activity, activity.getString(R.string.no_suvi), Toast.LENGTH_SHORT).show();
                     } else if (response.body().getStatus() == 0) {
                         Toast.makeText(activity, "rrr", Toast.LENGTH_SHORT).show();
