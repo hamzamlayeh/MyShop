@@ -1,40 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginBottom="8dp">
+    android:layout_height="match_parent">
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="267dp"
+        android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:layout_marginTop="16dp"
         android:outlineAmbientShadowColor="@color/colorAccent"
         android:outlineSpotShadowColor="@color/colorAccent"
         app:cardBackgroundColor="@android:color/background_light"
-        app:cardElevation="4dp"
-        app:cardMaxElevation="14dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints">
+        app:cardElevation="6dp"
+        app:cardMaxElevation="14dp">
 
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_margin="5dp">
 
             <com.facebook.drawee.view.SimpleDraweeView
-                android:id="@+id/imgProduit"
+                android:id="@+id/imgBoutique"
                 android:layout_width="0dp"
                 android:layout_height="140dp"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
-                android:layout_marginBottom="8dp"
                 android:foregroundGravity="center"
                 android:scaleType="fitXY"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -52,7 +44,7 @@
                 android:textColor="@android:color/background_dark"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imgProduit" />
+                app:layout_constraintTop_toBottomOf="@+id/imgBoutique" />
 
             <TextView
                 android:id="@+id/categorie"
@@ -61,6 +53,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="4dp"
                 android:textColor="@android:color/background_dark"
+                android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/NomProduit" />
 
@@ -68,49 +61,27 @@
                 android:id="@+id/Prix"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="232dp"
+                android:layout_marginTop="4dp"
                 android:textColor="@android:color/background_dark"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.88"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/imgProduit" />
+                app:layout_constraintTop_toBottomOf="@+id/categorie" />
 
             <TextView
                 android:id="@+id/textView5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="232dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="4dp"
                 android:text="DT"
                 android:textColor="@android:color/background_dark"
-                app:layout_constraintStart_toEndOf="@+id/Prix"
-                app:layout_constraintTop_toTopOf="@+id/imgProduit" />
-
-            <ImageView
-                android:id="@+id/followed"
-                android:layout_width="32dp"
-                android:layout_height="45dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="24dp"
-                android:visibility="visible"
-                android:clickable="true"
+                android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imgProduit"
-                app:srcCompat="@drawable/like"
-                android:focusable="true" />
-
-            <ImageView
-                android:id="@+id/unfollowed"
-                android:layout_width="32dp"
-                android:layout_height="45dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="24dp"
-                android:visibility="gone"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imgProduit"
-                app:srcCompat="@drawable/ic_favorite1"
-                tools:ignore="VectorDrawableCompat"
-                android:clickable="true"
-                android:focusable="true" />
+                app:layout_constraintHorizontal_bias="0.96"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/categorie" />
 
             <TextView
                 android:id="@+id/Id"
@@ -118,9 +89,8 @@
                 android:layout_height="wrap_content"
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imgProduit" />
+                app:layout_constraintTop_toBottomOf="@+id/imgBoutique" />
 
         </android.support.constraint.ConstraintLayout>
     </android.support.v7.widget.CardView>
-
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

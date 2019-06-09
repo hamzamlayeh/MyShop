@@ -6,6 +6,46 @@
     android:layout_height="match_parent"
     tools:context=".BoutiqueDetails">
 
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/constraintLayout2"
+        android:layout_width="0dp"
+        android:layout_height="69dp"
+        android:background="@color/colorAccent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/annonce"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/annonce"
+            android:textColor="@android:color/background_light"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView7"
+            android:layout_width="45dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp"
+            android:onClick="Logout"
+            android:padding="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_logout"
+            tools:ignore="VectorDrawableCompat" />
+    </android.support.constraint.ConstraintLayout>
+
     <android.support.v4.widget.NestedScrollView
         android:layout_width="wrap_content"
         android:layout_height="0dp"
@@ -33,11 +73,37 @@
                 android:layout_marginEnd="17dp"
                 android:onClick="SupprimerItemBoutique"
                 android:padding="2dp"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView"
+                app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_suppprod"
                 tools:ignore="VectorDrawableCompat" />
 
+            <ImageView
+                android:id="@+id/followed"
+                android:layout_width="32dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginEnd="8dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:visibility="visible"
+                app:layout_constraintEnd_toStartOf="@+id/imageView6"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_add_favorites"
+                tools:ignore="VectorDrawableCompat" />
+
+            <ImageView
+                android:id="@+id/unfollowed"
+                android:layout_width="32dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginEnd="8dp"
+                android:visibility="visible"
+                app:layout_constraintEnd_toStartOf="@+id/imageView6"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_delete_favourites_"
+                tools:ignore="VectorDrawableCompat" />
             <TextView
                 android:id="@+id/Prix"
                 android:layout_width="wrap_content"
@@ -85,7 +151,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="1dp"
                 android:layout_marginTop="16dp"
-                android:background="@color/withoutColoredBackground"
+                android:background="@android:color/darker_gray"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -124,12 +190,23 @@
                 tools:ignore="VectorDrawableCompat" />
 
             <TextView
+                android:id="@+id/categorie"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                android:textSize="18sp"
+                app:layout_constraintStart_toEndOf="@+id/imageView4"
+                app:layout_constraintTop_toBottomOf="@+id/location" />
+
+            <TextView
                 android:id="@+id/Marque"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="12dp"
                 android:textSize="18sp"
+                android:gravity="center"
                 android:visibility="gone"
                 app:layout_constraintStart_toEndOf="@+id/imageView40"
                 app:layout_constraintTop_toBottomOf="@+id/categorie" />
@@ -143,27 +220,65 @@
                 android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView4"
-                app:srcCompat="@drawable/ic_tag"
+                app:srcCompat="@drawable/ic_price_tag"
                 tools:ignore="VectorDrawableCompat" />
 
             <TextView
-                android:id="@+id/categorie"
+                android:id="@+id/contact_tel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="12dp"
                 android:textSize="18sp"
-                app:layout_constraintStart_toEndOf="@+id/imageView4"
-                app:layout_constraintTop_toBottomOf="@+id/location" />
+                android:gravity="center"
+                android:visibility="gone"
+                app:layout_constraintStart_toEndOf="@+id/imageView41"
+                app:layout_constraintTop_toBottomOf="@+id/Marque" />
+
+            <ImageView
+                android:id="@+id/imageView41"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="8dp"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView40"
+                app:srcCompat="@drawable/ic_hand_smartphon"
+                tools:ignore="VectorDrawableCompat" />
+
+            <TextView
+                android:id="@+id/contact_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                android:textSize="18sp"
+                android:gravity="center"
+                android:visibility="gone"
+                app:layout_constraintStart_toEndOf="@+id/imageView42"
+                app:layout_constraintTop_toBottomOf="@+id/contact_tel" />
+
+            <ImageView
+                android:id="@+id/imageView42"
+                android:layout_width="30dp"
+                android:layout_height="27dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="8dp"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView41"
+                app:srcCompat="@drawable/ic_envelope"
+                tools:ignore="VectorDrawableCompat" />
 
             <View
                 android:id="@+id/view9"
                 android:layout_width="wrap_content"
                 android:layout_height="1dp"
-                android:layout_marginTop="28dp"
-                android:background="@color/withoutColoredBackground"
+                android:layout_marginTop="16dp"
+                android:background="@android:color/darker_gray"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Marque" />
+                app:layout_constraintTop_toBottomOf="@+id/imageView42" />
 
             <TextView
                 android:id="@+id/textView15"
@@ -173,6 +288,7 @@
                 android:layout_marginTop="16dp"
                 android:text="@string/description"
                 android:textSize="18sp"
+                android:gravity="center"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/view9" />
@@ -196,9 +312,9 @@
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="32dp"
+                android:onClick="LoadPhotoBoutique"
                 android:background="@drawable/style_btn"
-                android:onClick="Contacter"
-                android:text="@string/contacter_vendeur"
+                android:text="@string/consulter_photo"
                 android:textColor="@android:color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -213,54 +329,36 @@
                 android:layout_marginTop="36dp"
                 android:layout_marginEnd="32dp"
                 android:background="@drawable/style_btn"
-                android:text="@string/consulter_photo"
+                android:onClick="Contacter"
+                android:text="@string/contacter_vendeur"
                 android:textColor="@android:color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/description" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/grid_IMG"
+                android:layout_width="0dp"
+                android:layout_height="189dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/button2" />
         </android.support.constraint.ConstraintLayout>
     </android.support.v4.widget.NestedScrollView>
 
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/constraintLayout2"
-        android:layout_width="0dp"
-        android:layout_height="69dp"
+    <View
+        android:id="@+id/view3"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
         android:background="@color/colorAccent"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigation"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:id="@+id/annonce"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:text="@string/annonce"
-            android:textColor="@android:color/background_light"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/imageView7"
-            android:layout_width="45dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="8dp"
-            android:onClick="Logout"
-            android:padding="5dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_logout"
-            tools:ignore="VectorDrawableCompat" />
-    </android.support.constraint.ConstraintLayout>
+        app:layout_constraintStart_toStartOf="parent" />
 
     <com.luseen.luseenbottomnavigation.BottomNavigation.BottomNavigationView
         android:id="@+id/bottomNavigation"

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProduitsActivity">
+    tools:context=".BoutiqueActivity">
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/constraintLayout2"
@@ -47,7 +47,7 @@
     </android.support.constraint.ConstraintLayout>
 
     <GridView
-        android:id="@+id/grid"
+        android:id="@+id/gride"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"

@@ -127,7 +127,7 @@ public class ProfileActivity extends AppCompatActivity {
                     if (userInfos.getImage_profile() == null) {
                         Img_profil.setImageResource(R.drawable.ic_useravatar);
                     } else {
-                        //Log.i("image", userInfos.getImage_profile());
+                      Log.i("image", userInfos.getImage_profile());
                         Img_profil.setImageURI(userInfos.getImage_profile());
                     }
                     break;

@@ -43,7 +43,7 @@ public class ProduitsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_produits);
         activity = this;
         bottomNavigationView = findViewById(R.id.bottomNavigation);
-        grid = findViewById(R.id.grid);
+        grid = findViewById(R.id.grids);
         Helpers.AddMenu(activity, bottomNavigationView);
         prefs = getApplicationContext().getSharedPreferences("UserInfos", MODE_PRIVATE);
         ID_user = prefs.getInt("ID_User", 0);
@@ -54,7 +54,7 @@ public class ProduitsActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 TextView txtId = view.findViewById(R.id.Id);
-                // Toast.makeText(activity, txtId.getText().toString()+"", Toast.LENGTH_SHORT).show();
+//                 Toast.makeText(activity, txtId.getText().toString()+"", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(), ProduitDetails.class);
                 intent.putExtra("ID_Prod", txtId.getText().toString());
                 startActivity(intent);

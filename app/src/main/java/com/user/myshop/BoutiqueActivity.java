@@ -39,7 +39,7 @@ public class BoutiqueActivity extends AppCompatActivity {
         setContentView(R.layout.activity_boutique);
         activity = this;
         bottomNavigationView = findViewById(R.id.bottomNavigation);
-        grid = findViewById(R.id.grid);
+        grid = findViewById(R.id.gride);
         Helpers.AddMenu(activity, bottomNavigationView);
         if (Helpers.isConnected(activity))
             GetAllBoutique();
@@ -50,7 +50,7 @@ public class BoutiqueActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 TextView txtId = view.findViewById(R.id.Id);
-                Intent intent = new Intent(activity, BoutiqueDetails.class);
+                Intent intent = new Intent(getApplicationContext(), BoutiqueDetails.class);
                 intent.putExtra("ID_Bout", txtId.getText().toString());
                 startActivity(intent);
             }

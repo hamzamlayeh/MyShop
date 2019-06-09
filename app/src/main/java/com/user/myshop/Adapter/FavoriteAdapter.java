@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
 import com.user.myshop.Models.Favorites;
 import com.user.myshop.R;
 
@@ -17,7 +18,6 @@ public class FavoriteAdapter extends BaseAdapter {
 
     private List<Favorites> list;
     private Activity activity;
-    boolean isFavo = false;
 
     public FavoriteAdapter(Activity context, List<Favorites> list) {
         super();
@@ -43,7 +43,6 @@ public class FavoriteAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 //        convertView = layoutInflater.inflate(R.layout.item_porduit, parent,false);
-
         LayoutInflater inflator = activity.getLayoutInflater();
         if (convertView == null) {
             convertView = inflator.inflate(R.layout.item_favorite, null);
@@ -54,18 +53,21 @@ public class FavoriteAdapter extends BaseAdapter {
             TextView description = convertView.findViewById(R.id.Description);
             ImageView imgProduit = convertView.findViewById(R.id.imgProduit);
 
-
             nomP.setText(list.get(position).getBoutique().getNomProd());
-            marque.setText(list.get(position).getBoutique().getMarque());
             description.setText(list.get(position).getBoutique().getDescription());
             prix.setText(list.get(position).getBoutique().getPrix());
 
+            if (!list.get(position).getBoutique().getMarque().isEmpty()){
+                marque.setVisibility(View.VISIBLE);
+                marque.setText(list.get(position).getBoutique().getMarque());
+            }
 
-//        Picasso.get()
-//                .load(list.get(position).getProduit().getImage())
-//                .resize(400,500)
-//                .into(imgProduit);
-
+            if (list.get(position).getBoutique().getListimage().size() > 0) {
+                Picasso.get()
+                        .load(list.get(position).getBoutique().getListimage().get(0))
+                        .resize(400, 500)
+                        .into(imgProduit);
+            }
         }
         return convertView;
     }

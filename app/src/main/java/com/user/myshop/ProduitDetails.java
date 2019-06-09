@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -97,9 +99,8 @@ public class ProduitDetails extends AppCompatActivity {
     }
 
     public void LoadPhoto(View view) {
-        Log.i("size", Produit.getListimage().size() + "");
-        recyclerView.setVisibility(View.VISIBLE);
         if (Produit != null) {
+            recyclerView.setVisibility(View.VISIBLE);
             ImageProduitAdapter imageProduitAdapter = new ImageProduitAdapter(Produit.getListimage(), activity);
             recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext(),
                     LinearLayoutManager.HORIZONTAL, false));

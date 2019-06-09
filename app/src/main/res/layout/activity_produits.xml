@@ -47,7 +47,7 @@
     </android.support.constraint.ConstraintLayout>
 
     <GridView
-        android:id="@+id/grid"
+        android:id="@+id/grids"
         android:layout_width="match_parent"
         android:layout_height="0dp"
 
